@@ -5,9 +5,10 @@ class MainArea extends Component {
     render () {
         return (
             <div className="mainArea_container">
-            	mainArea	
             </div>
         )
+    }
+    componentDidMount () {
     }
 }
 

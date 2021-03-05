@@ -3,6 +3,7 @@ import TopStatusBar 	from "./topStatusBar/topStatusBar.js"
 import SideToolBar 	 	from "./sideToolBar/sideToolBar.js"
 import LoginPop			from "./loginPop/loginPop.js"
 import MainArea			from "./mainArea/mainArea.js"
+import UploadPop        from "./uploadPop/uploadPop.js"
 import "./desktop.css"
 
 class Desktop extends Component {
@@ -13,6 +14,7 @@ class Desktop extends Component {
 				<SideToolBar/>
 				<LoginPop/>
 				<MainArea/>
+                <UploadPop/>
             </div>
         )
     }

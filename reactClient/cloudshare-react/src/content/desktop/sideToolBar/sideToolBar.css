@@ -4,6 +4,5 @@
 	left: 0;
 	width: 280px;
 	height: calc(100vh - 30px);
-	background-color: green;
 	z-index: 99999;
 }
