@@ -1,8 +1,3 @@
-:root {
-	--topStatusBar_borderColor: #086d68;
-	--topStatusBarItem_backgroundColor: #b9cccb;
-	--topStatusBarItem_color: #273837;
-}
 .topStatusBar_container {
 	position: fixed;
 	top: 0;
@@ -11,14 +6,15 @@
 	align-items: center;
 	width: 100vw;
 	height: 30px;
-	border-bottom: 1px solid var(--topStatusBar_borderColor);
+	border-bottom: 1px solid var(--borderColor);
 }
 
 .topStatusBar_item {
-	background-color: var(--topStatusBarItem_backgroundColor);
-	color: var(--topStatusBarItem_color);
+	background-color: var(--backgroundColor);
+	color: var(--color);
 	margin-right: 2px;
 	padding: 4px;
+	cursor: pointer;
 }
 .topStatusBar_item:last-child {
 	margin-right: 0;

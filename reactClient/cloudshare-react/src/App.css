@@ -1,5 +1,7 @@
 :root {
-    
+	--borderColor: #086d68;
+	--backgroundColor: #b9cccb;
+	--color: #273837;
 }
 .App {
 	

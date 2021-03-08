@@ -2,5 +2,81 @@
 	position: fixed;
 	top: 0;
 	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.5);
 	z-index: 100000;
+}
+.loginPop_inner {
+	position: relative;
+	width: 93%;
+	max-width: 500px;
+	height: 93%;
+	max-height: 300px;
+	background-color: #fff;
+	border-radius: 3px;
+}
+.loginPop_header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 30px;
+	border-bottom: 1px solid var(--borderColor);
+	background-color: var(--backgroundColor);
+	padding: 8px;
+}
+.loginPop_closeBtn {
+	width: 20px;
+	height: 20px;
+	background-color: var(--color);
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.headerPop_body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	padding: 8px;
+}
+.headerPop_usernameInput_container, .headerPop_passwordInput_container {
+	width: 100%;
+	margin: 8px;
+}
+.headerPop_usernameInput_container {
+	
+}
+.headerPop_username_input, .headerPop_password_input {
+	display: inline-flex;
+	width: 100%;
+	outline: none;
+	background-color: #fff;
+	border: 0;
+	border-bottom: 1px dotted var(--borderColor);
+	padding: 8px;
+}
+.headerPop_username_input:focus, .headerPop_password_input:focus {
+	border-bottom: 2px solid var(--borderColor);
+}
+.headerPop_username_input {
+}
+.headerPop_passwordInput_container {
+	
+}
+.headerPop_password_input {
+
+}
+
+.headerPop_btnArea {
+	position: absolute;
+	bottom: 0;
+}
+.headerPop_actionBtn {
+	
 }
