@@ -3,10 +3,14 @@ import ReactDOM         from 'react-dom'
 import { Provider }     from "react-redux"
 import App              from './App'
 import store            from './store/store.js'
+import actions          from './store/actions.js'
+import reducers         from './store/reducers.js'
 import reportWebVitals  from './reportWebVitals'
 import './index.css'
 
-window.$store = store
+window.$store     = store
+window.$actions   = actions
+window.$reducers  = reducers
 
 ReactDOM.render(
   <Provider store={store}>

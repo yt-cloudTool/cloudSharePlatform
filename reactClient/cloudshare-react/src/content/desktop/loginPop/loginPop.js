@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { connect }          from 'react-redux'
-import { set_sideToolBar_show } from '../../../store/actions.js'
 import "./loginPop.css"
 
 class LoginPop extends Component {
@@ -8,47 +6,36 @@ class LoginPop extends Component {
         super(props)
 
         this.state = {
-            barshow: false
+            loginStatus:    'NOLOGIN',
+            loginPop_show:  false
         }
 
         window.$store.subscribe(() => {
-            const state = window.$store.getState()
-            this.state.barshow = state.sideToolBar_show
+            const _state_ = window.$store.getState()
+            
+            this.state.loginPop_show = _state_.loginPop_show
+            this.state.loginStatus   = _state_.loginStatus
         })
 
-        this.testChangeStore()
     }
+
+    showPop () {
+        window.$store.dispatch(window.$actions.set_loginPop_show(true))
+    }
+    hidePop () {
+        window.$store.dispatch(window.$actions.set_loginPop_show(false))
+    }
+
     render () {
-        if (this.state.barshow) {
-            return (
-                <div className="loginPop_container">
-                    loginPop	{String(this.state.barshow)}
-                </div>
-            )
+        if (this.state.loginPop_show === true) {
+            return <div className="loginPop_container">
+                loginPop {String(this.state.loginStatus)}
+            </div>
+            
         } else {
-            return ""
-        }
-    }
-
-    testChangeStore () {
-        // setInterval(() =>{
-        //     window.$store.dispatch(set_sideToolBar_show(!window.$store.getState().sideToolBar_show))
-        // },100)
-    }
-}
-
-const mapStateToProps = (state) => {
-    return {
-        "sideToolBar_show": state.sideToolBar_show
-    }
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        set_sideToolBar_show (data) {
-            dispatch(set_sideToolBar_show(data))
+            return null
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPop)
+export default require('react-redux').connect((state) => { return state }, null)(LoginPop)

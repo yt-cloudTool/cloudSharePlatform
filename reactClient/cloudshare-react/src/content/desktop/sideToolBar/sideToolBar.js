@@ -1,6 +1,16 @@
+/*
+-----------------
+用于显示各种详情 比如
+    -- 帐号详情
+    -- 服务器数据
+    -- 临时文件上传
+    -- 小工具快捷方式
+
+
+ */
 import React, { Component } from 'react'
 import { connect } from "react-redux"
-import { set_sideToolBar_show } from '../../../store/actions.js'
+// import {  } from '../../../store/actions.js'
 import "./sideToolBar.css"
 
 class SideToolBar extends Component {
@@ -21,7 +31,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         set_sideToolBar_show (data) {
-            dispatch(set_sideToolBar_show(data))
+            dispatch(window.$actions.set_sideToolBar_show(data))
         }
     }
 }

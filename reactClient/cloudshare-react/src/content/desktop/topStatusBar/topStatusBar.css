@@ -1,7 +1,25 @@
+:root {
+	--topStatusBar_borderColor: #086d68;
+	--topStatusBarItem_backgroundColor: #b9cccb;
+	--topStatusBarItem_color: #273837;
+}
 .topStatusBar_container {
 	position: fixed;
 	top: 0;
 	left: 0;
+	display: flex;
+	align-items: center;
 	width: 100vw;
 	height: 30px;
+	border-bottom: 1px solid var(--topStatusBar_borderColor);
+}
+
+.topStatusBar_item {
+	background-color: var(--topStatusBarItem_backgroundColor);
+	color: var(--topStatusBarItem_color);
+	margin-right: 2px;
+	padding: 4px;
+}
+.topStatusBar_item:last-child {
+	margin-right: 0;
 }
