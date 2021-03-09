@@ -28,9 +28,11 @@ class LoginPop extends Component {
     hidePop () {
         window.$store.dispatch(window.$actions.set_loginPop_show(false))
     }
-
     handleInputChange (e) {
         this.setState({ [e.target.name]: e.target.value })
+    }
+    confirm () {
+        
     }
 
     render () {
@@ -51,7 +53,7 @@ class LoginPop extends Component {
 							<input className="headerPop_password_input" name="password" value={this.state.password} onChange={this.handleInputChange} placeholder="Password"/>
 						</div>
 						<div className="headerPop_btnArea">
-							<span class="headerPop_actionBtn">Confirm</span>
+							<span class="headerPop_actionBtn" onClick={this.confirm}>Confirm</span>
 						</div>
 					</div>
 					
