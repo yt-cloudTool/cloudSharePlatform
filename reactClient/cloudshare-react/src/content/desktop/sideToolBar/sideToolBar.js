@@ -9,11 +9,22 @@
 
  */
 import React, { Component } from 'react'
-import { connect } from "react-redux"
-// import {  } from '../../../store/actions.js'
 import "./sideToolBar.css"
 
 class SideToolBar extends Component {
+    constructor (props) {
+        super(props)
+
+        this.state = {
+            
+        }
+
+        window.$store.subscribe(() => {
+
+        })
+
+    }
+    
     render () {
         return (
             <div className="sideToolBar_container">
@@ -22,19 +33,4 @@ class SideToolBar extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-	return {
-		'sideToolBar_show': state.sideToolBar_show
-	}
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        set_sideToolBar_show (data) {
-            dispatch(window.$actions.set_sideToolBar_show(data))
-        }
-    }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(SideToolBar)
+export default require('react-redux').connect((state) => { return state }, null)(SideToolBar)
