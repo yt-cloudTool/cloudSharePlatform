@@ -42,7 +42,9 @@ class LoginPop extends Component {
 				
 					<div className="loginPop_header">
 						<span>Login</span>
-						<span className="loginPop_closeBtn" onClick={this.hidePop}></span>
+						<div className="loginPop_closeBtn" onClick={this.hidePop}>
+							<div className="loginPop_closeBtn_inner"></div>
+						</div>
 					</div>
 					
 					<div className="headerPop_body">

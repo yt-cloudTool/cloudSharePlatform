@@ -29,10 +29,19 @@
 	padding: 8px;
 }
 .loginPop_closeBtn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 20px;
 	height: 20px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.loginPop_closeBtn_inner {
+	width: 20px;
+	height: 5px;
 	background-color: var(--color);
-	border-radius: 50%;
+	border-radius: 3px;
 	cursor: pointer;
 }
 
