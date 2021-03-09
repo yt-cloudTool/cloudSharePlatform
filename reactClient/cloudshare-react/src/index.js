@@ -12,7 +12,8 @@ import './index.css'
 // ===============================================
 // 请求拦截
 axios.interceptors.request.use((config) => {
-  if (window.localStorage.getItem('token')) {
+  const token = window.localStorage.getItem('token')
+  if (token) {
       config.headers.Authorization = token
   }
   return config
@@ -32,7 +33,7 @@ axios.interceptors.response.use((res) => {
       default: break
     }
   }
-  return Promise.reject(error.response.data)
+  return Promise.reject(err.response.data)
 })
 
 // ================================================
