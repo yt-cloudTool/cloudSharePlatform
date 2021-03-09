@@ -28,25 +28,33 @@ class LoginPop extends Component {
         window.$store.dispatch(window.$actions.set_loginPop_show(false))
     }
 
+    handleUsernameChange (e) {
+        this.setState({ username: e.target.value })
+    }
+    handlePasswordChange (e) {
+        this.setState({ password: e.target.value })
+    }
+
     render () {
+        const _this_ = this
         if (this.state.loginPop_show === true) {
             return <div className="loginPop_container">
             	<div className="loginPop_inner">
 				
 					<div className="loginPop_header">
-						<span>Login</span>
+						<span>Login</span>{this.state.username + this.state.password}
 						<span className="loginPop_closeBtn" onClick={this.hidePop}></span>
 					</div>
 					
 					<div className="headerPop_body">
 						<div className="headerPop_usernameInput_container">
-							<input className="headerPop_username_input" value={this.state.username} placeholder="Username"/>
+							<input className="headerPop_username_input" value={this.state.username} onChange={this.handleUsernameChange} placeholder="Username"/>
 						</div>
 						<div className="headerPop_passwordInput_container">
-							<input className="headerPop_password_input" value={this.state.password} placeholder="Password"/>
+							<input className="headerPop_password_input" value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password"/>
 						</div>
 						<div className="headerPop_btnArea">
-							<span class="headerPop_actionBtn">v</span>
+							<span class="headerPop_actionBtn">Confirm</span>
 						</div>
 					</div>
 					

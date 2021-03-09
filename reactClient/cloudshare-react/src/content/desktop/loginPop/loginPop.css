@@ -11,7 +11,6 @@
 	z-index: 100000;
 }
 .loginPop_inner {
-	position: relative;
 	width: 93%;
 	max-width: 500px;
 	height: 93%;
@@ -38,11 +37,12 @@
 }
 
 .headerPop_body {
+	position: relative;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 	width: 100%;
+	height: calc(100% - 30px);
 	padding: 8px;
 }
 .headerPop_usernameInput_container, .headerPop_passwordInput_container {
@@ -59,10 +59,10 @@
 	background-color: #fff;
 	border: 0;
 	border-bottom: 1px dotted var(--borderColor);
-	padding: 8px;
+	padding: 8px 0;
 }
 .headerPop_username_input:focus, .headerPop_password_input:focus {
-	border-bottom: 2px solid var(--borderColor);
+	border-bottom: 1px solid var(--borderColor);
 }
 .headerPop_username_input {
 }
@@ -75,8 +75,15 @@
 
 .headerPop_btnArea {
 	position: absolute;
-	bottom: 0;
+	bottom: 1em;
 }
 .headerPop_actionBtn {
-	
+	padding: 0.3em 0.5em;
+	background-color: var(--backgroundColor);
+	border: 1px solid var(--backgroundColor);
+	border-radius: 3px;
+}
+.headerPop_actionBtn:hover {
+	border: 1px solid var(--borderColor);
+	cursor: pointer;
 }
