@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import "./topStatusBar.css"
+import utils  from "../../../utils/utils.js"
 
 class TopStatusBa extends Component {
     constructor (props) {
@@ -7,7 +8,8 @@ class TopStatusBa extends Component {
 
         this.state = {
             loginStatus:    "NOLOGIN",
-            loginPop_show:  false
+            loginPop_show:  false,
+            dateTime:       utils.GetDate()
         }
 
         window.$store.subscribe(() => {
@@ -15,6 +17,11 @@ class TopStatusBa extends Component {
             this.state.loginStatus      = _state_.loginStatus
             this.state.loginPop_show    = _state_.loginPop_show
         })
+        
+        // 循环时间
+        setInterval(() => {
+            this.setState({ "dateTime": utils.GetDate() })
+        }, 1000);
     }
 
     showLoginPop () {
@@ -25,33 +32,41 @@ class TopStatusBa extends Component {
         return (
             <div className="topStatusBar_container">
 
-                {/* 登录状态指示&登录选项功能 */}
-                <span className="topStatusBar_item topStatusBar_loginStatus">
-                    
-                    <span className="topStatusBar_loginActionArea">
-                        { this.state.loginStatus == "NOLOGIN" ? <span onClick={this.showLoginPop}>Login</span> : <span>Account</span> }
-                    </span>
-                </span>
+                <div className="topStatusBar_inner">
 
-                {/* 搜索 */}
-                {/* <span className="topStatusBar_item topStatusBar_search">
-                    search
-                </span> */}
+                    <div className="topStatusBar_inner_left">
+                        {/* 登录状态指示&登录选项功能 */}
+                        <span className="topStatusBar_item topStatusBar_loginStatus">
+                            
+                            <span className="topStatusBar_loginActionArea">
+                                { this.state.loginStatus === "NOLOGIN" ? <span onClick={this.showLoginPop}>Login</span> : <span>Account</span> }
+                            </span>
+                        </span>
+                    </div>
 
-                {/* main区域显示效果调整&关闭所有窗口按钮&手机pc版本页面切换 */}
-                <span className="topStatusBar_item topStatusBar_action">
-                    action
-                </span>
+                    <div className="topStatusBar_inner_right">
+                        {/* 搜索 */}
+                        {/* <span className="topStatusBar_item topStatusBar_search">
+                            search
+                        </span> */}
 
-                {/* 数据数量统计 */}
-                <span className="topStatusBar_item topStatusBar_dataSum">
-                    dataSum
-                </span>
+                        {/* main区域显示效果调整&关闭所有窗口按钮&手机pc版本页面切换 */}
+                        <span className="topStatusBar_item topStatusBar_action">
+                            action
+                        </span>
 
-                {/* 时间日期 */}
-                <span className="topStatusBar_item topStatusBar_timeDate">
-                    timeDate
-                </span>
+                        {/* 数据数量统计 */}
+                        <span className="topStatusBar_item topStatusBar_dataSum">
+                            dataSum
+                        </span>
+
+                        {/* 时间日期 */}
+                        <span className="topStatusBar_item topStatusBar_timeDate">
+                            {this.state.dateTime}
+                        </span>
+                    </div>
+                </div>
+
 
             </div>
         )

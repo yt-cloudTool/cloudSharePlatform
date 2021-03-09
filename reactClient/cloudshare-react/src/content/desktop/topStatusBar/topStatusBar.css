@@ -8,7 +8,11 @@
 	height: 30px;
 	border-bottom: 1px solid var(--borderColor);
 }
-
+.topStatusBar_inner {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
 .topStatusBar_item {
 	background-color: var(--backgroundColor);
 	color: var(--color);
