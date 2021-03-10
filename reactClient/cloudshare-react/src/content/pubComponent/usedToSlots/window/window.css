@@ -2,15 +2,16 @@
     position: relative;
     top: 100px;
     left: 100px;
+	/* 尺寸在js里设置
 	width: 200px;
-    height: 200px;
+    height: 200px;*/
     border: 1px solid var(--borderColor);
     background-color: var(--backgroundColor);
     border-radius: 2px;
     z-index: 100;
 }
 .window_container:hover {
-    cursor: n-resize;
+    cursor: unset;
 }
 
 .window_header {
@@ -20,6 +21,7 @@
     width: 100%;
     height: 30px;
     border-bottom: 1px solid var(--borderColor);
+    user-select: none;
 }
 .window_title {
 
@@ -59,4 +61,60 @@
     width: 100%;
     height: calc(100% - 30px);
     background-color: #fff;
+}
+
+.window_corner {
+	position: absolute;
+	opacity: 0;
+}
+.window_corner:hover {
+	opacity: 0;
+}
+.window_corner_tl {
+	top: -5px;
+	left: -5px;
+	cursor: nw-resize;
+}
+.window_corner_tl> div {
+	top: 0;
+	left: 0
+}
+.window_corner_tr {
+	top: -5px;
+	right: -5px;
+	cursor: ne-resize;
+}
+.window_corner_tr> div {
+	top: 0;
+	right: 0
+}
+.window_corner_bl {
+	bottom: -5px;
+	left: -5px;
+	cursor: sw-resize;
+}
+.window_corner_bl> div {
+	bottom: 0;
+	left: 0
+}
+.window_corner_br {
+	bottom: -5px;
+	right: -5px;
+	cursor: se-resize;
+}
+.window_corner_br> div {
+	bottom: 0;
+	right: 0
+}
+.window_corner_row {
+	position: absolute;
+	width: 10px;
+	height: 5px;
+	background-color: var(--borderColor);
+}
+.window_corner_col {
+	position: absolute;
+	width: 5px;
+	height: 10px;
+	background-color: var(--borderColor);
 }
