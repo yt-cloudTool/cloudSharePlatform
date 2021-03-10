@@ -1,5 +1,5 @@
 .window_container {
-    position: absolute;
+    position: relative;
     top: 100px;
     left: 100px;
 	width: 200px;
@@ -7,6 +7,7 @@
     border: 1px solid var(--borderColor);
     background-color: var(--backgroundColor);
     border-radius: 2px;
+    z-index: 100;
 }
 
 .window_header {

@@ -7,6 +7,7 @@
 	width: 100vw;
 	height: 30px;
 	border-bottom: 1px solid var(--borderColor);
+	background-color: var(--backgroundColor);
 }
 .topStatusBar_inner {
 	display: flex;
