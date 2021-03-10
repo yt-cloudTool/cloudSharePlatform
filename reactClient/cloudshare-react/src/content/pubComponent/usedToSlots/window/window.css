@@ -9,6 +9,9 @@
     border-radius: 2px;
     z-index: 100;
 }
+.window_container:hover {
+    cursor: n-resize;
+}
 
 .window_header {
     display: flex;
