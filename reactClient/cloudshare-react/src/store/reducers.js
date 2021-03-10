@@ -25,8 +25,17 @@ const loginPop_show = (state = defaultState.loginPop_show, action) => {
 	}
 }
 
+// 窗口列表
+const windowList = (state = defaultState.window_list, action) => {
+	switch (action.type)  {
+		case 'SET_WINDOWLIST': return action.data
+		default: return state
+	}
+}
+
 export default combineReducers({
 	sideToolBar_show,
 	loginStatus,
-	loginPop_show
+	loginPop_show,
+	windowList
 })

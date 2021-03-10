@@ -12,7 +12,10 @@ class LoginPop extends Component {
             password:			''
         }
 
+        this.showPop           = this.showPop.bind(this)
+        this.hidePop           = this.hidePop.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this)
+        this.confirm           = this.confirm.bind(this)
 
         window.$store.subscribe(() => {
             const _state_ = window.$store.getState()
@@ -27,12 +30,17 @@ class LoginPop extends Component {
     }
     hidePop () {
         window.$store.dispatch(window.$actions.set_loginPop_show(false))
+        this.setState({ username: "", password: "" })
     }
     handleInputChange (e) {
         this.setState({ [e.target.name]: e.target.value })
     }
     confirm () {
-        
+        window.$axios.post("", {}).then((res) => {
+
+        }).catch((err) => {
+            
+        })
     }
 
     render () {
@@ -52,7 +60,7 @@ class LoginPop extends Component {
 							<input className="headerPop_username_input" name="username" value={this.state.username} onChange={this.handleInputChange} placeholder="Username"/>
 						</div>
 						<div className="headerPop_passwordInput_container">
-							<input className="headerPop_password_input" name="password" value={this.state.password} onChange={this.handleInputChange} placeholder="Password"/>
+							<input className="headerPop_password_input" name="password" value={this.state.password} onChange={this.handleInputChange} type="password" placeholder="Password"/>
 						</div>
 						<div className="headerPop_btnArea">
 							<span class="headerPop_actionBtn" onClick={this.confirm}>Confirm</span>

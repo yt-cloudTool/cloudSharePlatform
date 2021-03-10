@@ -1,3 +1,58 @@
 .window_container {
-	
+    position: absolute;
+    top: 100px;
+    left: 100px;
+	width: 200px;
+    height: 200px;
+    border: 1px solid var(--borderColor);
+    background-color: var(--backgroundColor);
+    border-radius: 2px;
+}
+
+.window_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid var(--borderColor);
+}
+.window_title {
+
+}
+.window_actionBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.window_actionBtn_outer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    margin: 0 2px;
+}
+.window_actionBtn_min {
+    width: 13px;
+    height: 5px;
+    border-radius: 3px;
+    background-color: var(--borderColor);
+}
+.window_actionBtn_maxAndResume {
+    width: 13px;
+    height: 13px;
+    border-radius: 3px;
+    background-color: var(--borderColor);
+}
+.window_actionBtn_close {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: var(--borderColor);
+}
+.window_body {
+    width: 100%;
+    height: calc(100% - 30px);
+    background-color: #fff;
 }
