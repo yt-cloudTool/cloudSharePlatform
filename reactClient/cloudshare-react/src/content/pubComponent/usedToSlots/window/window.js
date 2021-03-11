@@ -77,28 +77,10 @@ class Window extends Component {
 					})
 				break
 				case 'tr':
-					this.setState({
-						origin_offsetLeft: 0,
-			           	origin_offsetRight: 0,
-			           	origin_offsetTop: 0,
-			           	origin_offsetBottom: 0
-					})
 				break
 				case 'bl':
-					this.setState({
-						origin_offsetLeft: 0,
-			           	origin_offsetRight: 0,
-			           	origin_offsetTop: 0,
-			           	origin_offsetBottom: 0
-					})
 				break
 				case 'br':
-					this.setState({
-						origin_offsetLeft: 0,
-			           	origin_offsetRight: 0,
-			           	origin_offsetTop: 0,
-			           	origin_offsetBottom: 0
-					})
 				break
 				default:
 					return false
@@ -122,22 +104,10 @@ class Window extends Component {
 				})
 			break
 			case 'tr':
-				this.setState({
-					win_W: this.state.win_W + this.state.origin_offsetRight,
-					win_H: this.state.win_H + this.state.origin_offsetBottom
-				})
 			break
 			case 'bl':
-				this.setState({
-					win_W: this.state.win_W + this.state.origin_offsetRight,
-					win_H: this.state.win_H + this.state.origin_offsetBottom
-				})
 			break
 			case 'br':
-				this.setState({
-					win_W: this.state.win_W + this.state.origin_offsetRight,
-					win_H: this.state.win_H + this.state.origin_offsetBottom
-				})
 			break
 			default:
 				return false
