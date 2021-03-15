@@ -10,6 +10,9 @@ class Window extends Component {
             win_Y: 80,
             win_W: 200,
             win_H: 200,
+            // 鼠标当前点击坐标
+            pointer_X: 0,
+            pointer_Y: 0,
             // 存储开始拖动前窗口端点与鼠标正交距离
             origin_Xlen: 0,
             origin_Ylen: 0,
@@ -70,10 +73,12 @@ class Window extends Component {
 			switch (e.target.parentNode.getAttribute('name')) {
 				case 'tl':
 					this.setState({
-						origin_offsetLeft: 0,
-			           	origin_offsetRight: 0,
-			           	origin_offsetTop: 0,
-			           	origin_offsetBottom: 0
+                        pointer_X: e.clientX,
+                        pointer_Y: e.clientY,
+						// origin_offsetLeft:   this.windowContainerRef.offsetLeft,
+			           	// origin_offsetRight:  this.windowContainerRef.offsetLeft + Number(this.windowContainerRef.style.width.split('p')[0]),
+			           	// origin_offsetTop:    this.windowContainerRef.offsetTop,
+			           	// origin_offsetBottom: this.windowContainerRef.offsetTop + Number(this.windowContainerRef.style.height.split('p')[0])
 					})
 				break
 				case 'tr':
@@ -86,21 +91,31 @@ class Window extends Component {
 					return false
 			}
 			
-			this.setState({
-				origin_Xlen: e.clientX - this.windowContainerRef.offsetLeft,
-				origin_Ylen: e.clientY - this.windowContainerRef.offsetTop,
-			})
+			// this.setState({
+			// 	origin_Xlen: e.clientX - this.windowContainerRef.offsetLeft,
+			// 	origin_Ylen: e.clientY - this.windowContainerRef.offsetTop,
+			// })
 			
 			window.onmousemove = this.handle_corner_mouseMove
 			window.onmouseup = this.handle_corner_mouseUp
 		}
 	}
 	handle_corner_mouseMove (e) {
+        console.log('e ======>', e.clientX)
 		switch (e.target.parentNode.getAttribute('name')) {
 			case 'tl':
+                var mouseMoveX = e.clientX
+                var mouseMoveY = e.clientY
 				this.setState({
-					win_W: this.state.win_W + this.state.origin_offsetRight,
-					win_H: this.state.win_H + this.state.origin_offsetBottom
+                    win_W: this.state.pointer_X - mouseMoveX + this.windowContainerRef.offsetWidth,
+                    pointer_X: mouseMoveX,
+                    pointer_Y: mouseMoveY,
+                    // win_X: e.clientX,
+                    // // win_Y: ,
+					// win_W: this.windowContainerRef.offsetLeft - e.clientX + Number(this.windowContainerRef.),
+					// // win_H: this.state.win_H + this.state.origin_offsetBottom,
+                    // origin_offsetLeft:   e.target.parentNode.offsetLeft,
+                    // origin_offsetRight:  e.target.parentNode.offsetLeft + Number(this.windowContainerRef.style.width.split('p')[0]),
 				})
 			break
 			case 'tr':
@@ -125,19 +140,19 @@ class Window extends Component {
     componentDidMount () {
         // 窗口绑定事件
         this.windowContainerRef.onmousedown = this.handle_container_mouseDown
-        this.windowCornerTLRef.onmousedown = this.handle_corner_mouseDown
-        this.windowCornerTRRef.onmousedown = this.handle_corner_mouseDown
-        this.windowCornerBLRef.onmousedown = this.handle_corner_mouseDown
-        this.windowCornerBRRef.onmousedown = this.handle_corner_mouseDown
+        // this.windowCornerTLRef.onmousedown = this.handle_corner_mouseDown
+        // this.windowCornerTRRef.onmousedown = this.handle_corner_mouseDown
+        // this.windowCornerBLRef.onmousedown = this.handle_corner_mouseDown
+        // this.windowCornerBRRef.onmousedown = this.handle_corner_mouseDown
     }
 
     render () {
         return (
             <div ref={(ref) => {this.windowContainerRef = ref}} className="window_container" style={{
-	            	top: this.state.win_Y + 'px',
-					left: this.state.win_X + 'px',
-					width:  this.state.win_W + 'px',
-					height: this.state.win_H + 'px'
+	            	top: this.state.win_Y,
+					left: this.state.win_X,
+					width:  this.state.win_W,
+					height: this.state.win_H
 	            }}>
                 <div className="window_header">
                     <span className="window_title">

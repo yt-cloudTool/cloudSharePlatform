@@ -71,8 +71,8 @@
 	opacity: 0;
 }
 .window_corner_tl {
-	top: -5px;
-	left: -5px;
+	top: 0px;
+	left: 0px;
 	cursor: nw-resize;
 }
 .window_corner_tl> div {
@@ -80,8 +80,8 @@
 	left: 0
 }
 .window_corner_tr {
-	top: -5px;
-	right: -5px;
+	top: 0px;
+	right: 0px;
 	cursor: ne-resize;
 }
 .window_corner_tr> div {
@@ -89,8 +89,8 @@
 	right: 0
 }
 .window_corner_bl {
-	bottom: -5px;
-	left: -5px;
+	bottom: 0px;
+	left: 0px;
 	cursor: sw-resize;
 }
 .window_corner_bl> div {
@@ -98,8 +98,8 @@
 	left: 0
 }
 .window_corner_br {
-	bottom: -5px;
-	right: -5px;
+	bottom: 0px;
+	right: 0px;
 	cursor: se-resize;
 }
 .window_corner_br> div {
