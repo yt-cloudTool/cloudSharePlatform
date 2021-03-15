@@ -7,15 +7,17 @@ class TopStatusBa extends Component {
         super(props)
 
         this.state = {
-            loginStatus:    "NOLOGIN",
-            loginPop_show:  false,
-            dateTime:       utils.GetDate()
+            loginStatus:    		"NOLOGIN",
+            loginPop_show:  		false,
+            dateTime:       		utils.GetDate(),
+            sideToolBar_toggle: 	false
         }
 
         window.$store.subscribe(() => {
             const _state_ = window.$store.getState()
-            this.state.loginStatus      = _state_.loginStatus
-            this.state.loginPop_show    = _state_.loginPop_show
+            this.state.loginStatus      	= _state_.loginStatus
+            this.state.loginPop_show    	= _state_.loginPop_show
+            this.state.sideToolBar_toggle = _state_.sideToolBar_toggle
         })
         
         // 循环时间
@@ -27,14 +29,25 @@ class TopStatusBa extends Component {
     showLoginPop () {
         window.$store.dispatch(window.$actions.set_loginPop_show(true))
     }
+    
+    toggleMenuDrawer () {
+    	window.$store.dispatch(window.$actions.set_sideToolBar_toggle(!window.$store.getState().sideToolBar_toggle))
+    }
 
     render () {
+    		let menuBtnStyle = {
+				
+		}
         return (
             <div className="topStatusBar_container">
 
                 <div className="topStatusBar_inner">
 
                     <div className="topStatusBar_inner_left">
+                    	{/* 菜单按钮 */}
+                     	<span className="topStatusBar_item topStatusBar_menu" onClick={this.toggleMenuDrawer} style={menuBtnStyle}>
+							Menu
+						</span>
                         {/* 登录状态指示&登录选项功能 */}
                         <span className="topStatusBar_item topStatusBar_loginStatus">
                             

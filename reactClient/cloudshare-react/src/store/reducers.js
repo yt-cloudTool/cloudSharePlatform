@@ -33,9 +33,19 @@ const windowList = (state = defaultState.window_list, action) => {
 	}
 }
 
+// 菜单抽屉
+const sideToolBar_toggle = (state = defaultState.sideToolBar_toggle, action) => {
+	switch (action.type)  {
+		case 'SET_SIDETOOLBAR_TOGGLE': return action.data
+		default: return state
+	}
+}
+
+
 export default combineReducers({
 	sideToolBar_show,
 	loginStatus,
 	loginPop_show,
-	windowList
+	windowList,
+	sideToolBar_toggle
 })

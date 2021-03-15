@@ -4,5 +4,8 @@
 	left: -280px;
 	width: 280px;
 	height: calc(100vh - 30px);
+	border-right: 1px solid var(--borderColor);
+	background-color: var(--backgroundColor);
 	z-index: 99999;
+	transition: all 0.3s;
 }

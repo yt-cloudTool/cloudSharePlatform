@@ -16,18 +16,22 @@ class SideToolBar extends Component {
         super(props)
 
         this.state = {
-            
+            sideToolBar_toggle: false
         }
 
         window.$store.subscribe(() => {
-
+            const _state_ = window.$store.getState()
+            this.state.sideToolBar_toggle = _state_.sideToolBar_toggle
         })
 
     }
     
     render () {
+    		let containerStyle = {
+			left: this.state.sideToolBar_toggle ? 0 : '-280px'
+		}
         return (
-            <div className="sideToolBar_container">
+            <div className="sideToolBar_container" style={containerStyle}>
             </div>
         )
     }
