@@ -7,5 +7,14 @@
 	border-right: 1px solid var(--borderColor);
 	background-color: var(--backgroundColor);
 	z-index: 99999;
-	transition: all 0.3s;
+	transition: all 0.1s;
+}
+
+.sideToolBar_functionArea {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.sideToolBar_notifyArea {
+	
 }

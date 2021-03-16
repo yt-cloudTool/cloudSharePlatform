@@ -9,6 +9,7 @@
 
  */
 import React, { Component } from 'react'
+import Icon from "./components/sideToolBarIcon/sideToolBarIcon.js"
 import "./sideToolBar.css"
 
 class SideToolBar extends Component {
@@ -32,6 +33,20 @@ class SideToolBar extends Component {
 		}
         return (
             <div className="sideToolBar_container" style={containerStyle}>
+            		{ /* 功能区域 */ }
+				<div className="sideToolBar_functionArea">
+	            		<Icon label="aaa" img="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2848534455,1759392655&fm=26&gp=0.jpg"/>
+	            		<Icon/>
+	            		<Icon/>
+	            		<Icon/>
+					<Icon/>
+	            		<Icon/>
+	            		<Icon/>
+				</div>
+				{ /* 通知区域 */ }
+				<div className="sideToolBar_notifyArea">
+				
+				</div>
             </div>
         )
     }
