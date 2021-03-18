@@ -2,6 +2,7 @@ package main
 
 import (
 	routes "cloudSharePlatform/routes"
+    db "cloudSharePlatform/db"
 
 	"github.com/gin-gonic/gin"
 )
@@ -9,6 +10,11 @@ import (
 var r *gin.Engine = gin.Default()
 
 func main() {
+    /*
+        数据库初始化
+    */
+    db.MongodbInit()
+    
 	/*
 		已使用的路由
 	*/

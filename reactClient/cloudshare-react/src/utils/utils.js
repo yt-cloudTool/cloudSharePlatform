@@ -1,7 +1,7 @@
 export default {
     
     // 返回特定格式时间日期
-    GetDate: function(timestamp) {
+    GetDate: function (timestamp) {
         let dateObj
         if (timestamp) {
             dateObj = new Date(timestamp)
@@ -22,7 +22,7 @@ export default {
             default: break
         }
         const date    = dateObj.getDate() >= 10 ? dateObj.getDate() : ('0' + dateObj.getDate())
-        const hour      = dateObj.getHours()
+        const hour    = dateObj.getHours()
         const minute  = dateObj.getMinutes() >= 10 ? dateObj.getMinutes() : ('0' + dateObj.getMinutes())
         const seconds = dateObj.getSeconds() >= 10 ? dateObj.getSeconds() : ('0' + dateObj.getSeconds())
         const dateTimeStr = `${year}-${month}-${date} ${day} ${hour}:${minute}:${seconds}` 
