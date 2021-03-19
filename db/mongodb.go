@@ -10,45 +10,85 @@ import (
 	options "go.mongodb.org/mongo-driver/mongo/options"
 )
 
-var mongodbClient *mongo.Client
+var MongoURI string = "mongodb://localhost:27017"
 
-func GetMongoCli() *mongo.Client {
-	return mongodbClient
-}
-
-func MongodbInit() {
+func MongodbInit() *mongo.Client {
 	// Set client options
-	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+	clientOptions := options.Client().ApplyURI(MongoURI)
 
 	// Connect to MongoDB
-	MongodbClient, err := mongo.Connect(context.TODO(), clientOptions)
+	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// Check the connection
-	err = MongodbClient.Ping(context.TODO(), nil)
+	err = client.Ping(context.TODO(), nil)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	fmt.Println("Connected to MongoDB!")
-
-	mongodbTst()
+    
+    return client
 }
 
-func mongodbTst() {
-	collection := GetMongoCli().Database("test").Collection("test")
+// =============================================================================
+//    操作方法
+// =============================================================================
+// insertone
+func MongoInsertOne (dbName string, collName string, doc interface{}) (*mongo.InsertOneResult, error) {
+    var mongoCli = MongodbInit()
+    collection := mongoCli.Database(dbName).Collection(collName)
+    insertResult, err := collection.InsertOne(context.TODO(), doc)
+    if err != nil {
+    	return nil, err
+    }
+    defer func() {
+        if err = mongoCli.Disconnect(context.TODO()); err != nil {
+            log.Fatalln(err)
+        }
+    }()  
+    
+    fmt.Println("Inserted a single document: ", insertResult.InsertedID)
+    
+    return insertResult, nil
+}
 
-	type Student struct {
-		Id   int    `bson:"id"`
-		Name string `bson:"name"`
-	}
+// insertmany
+func MongoInsertMany (dbName string, collName string, doc []interface{}) (*mongo.InsertManyResult, error) {
+    var mongoCli = MongodbInit()
+    collection := mongoCli.Database(dbName).Collection(collName)
+    insertResult, err := collection.InsertMany(context.TODO(), doc)
+    if err != nil {
+    	return nil, err
+    }
+    defer func() {
+        if err = mongoCli.Disconnect(context.TODO()); err != nil {
+            log.Fatalln(err)
+        }
+    }()  
+    
+    fmt.Println("Inserted a single document: ", insertResult.InsertedIDs)
+    
+    return insertResult, nil
+}
 
-	insertResult, err := collection.InsertOne(context.TODO(), &Student{12, "小红"})
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println("Inserted a single document: ", insertResult.InsertedID)
+// updateone
+func MongoUpdateOne (dbName string, collName string, filter interface{}, update interface{}) (*mongo.UpdateResult, error) {
+    var mongoCli = MongodbInit()
+    collection := mongoCli.Database(dbName).Collection(collName)
+    updateResult, err := collection.UpdateOne(context.TODO(), filter, update)
+    if err != nil {
+    	return nil, err
+    }
+    defer func() {
+        if err = mongoCli.Disconnect(context.TODO()); err != nil {
+            log.Fatalln(err)
+        }
+    }()  
+    
+    fmt.Println("Inserted a single document: ", updateResult.InsertedIDs)
+    
+    return updateResult, nil
 }
