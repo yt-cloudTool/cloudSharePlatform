@@ -1,9 +1,9 @@
 package main
 
 import (
-    "fmt"
+    // "fmt"
 	routes "cloudSharePlatform/routes"
-    db "cloudSharePlatform/db"
+    // db "cloudSharePlatform/db"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,11 +14,11 @@ func main() {
     /*
         数据库测试
     */
-    result, err := db.MongoInsertOne("cloudshareplatform", "user", db.MongoUser{})
+    /*result, err := db.MongoInsertOne("cloudshareplatform", "user", db.MongoUser{})
     if err != nil {
         fmt.Println("err ==========>", err)
     }
-    fmt.Println("insertOne result ===============>", result.InsertedID)
+    fmt.Println("insertOne result ===============>", result.InsertedID) */
     
     
 	/*
@@ -26,6 +26,7 @@ func main() {
 	*/
 	// 用户注册
 	routes.UserAuthorityRegister(r)
+	routes.UserAuthorityLogin(r)
 
 	r.Run(":8000")
 }

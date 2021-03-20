@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	_ "go.mongodb.org/mongo-driver/bson"
+	// bson "go.mongodb.org/mongo-driver/bson"
 	mongo "go.mongodb.org/mongo-driver/mongo"
 	options "go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -31,64 +31,4 @@ func MongodbInit() *mongo.Client {
 	fmt.Println("Connected to MongoDB!")
     
     return client
-}
-
-// =============================================================================
-//    操作方法
-// =============================================================================
-// insertone
-func MongoInsertOne (dbName string, collName string, doc interface{}) (*mongo.InsertOneResult, error) {
-    var mongoCli = MongodbInit()
-    collection := mongoCli.Database(dbName).Collection(collName)
-    insertResult, err := collection.InsertOne(context.TODO(), doc)
-    if err != nil {
-    	return nil, err
-    }
-    defer func() {
-        if err = mongoCli.Disconnect(context.TODO()); err != nil {
-            log.Fatalln(err)
-        }
-    }()  
-    
-    fmt.Println("Inserted a single document: ", insertResult.InsertedID)
-    
-    return insertResult, nil
-}
-
-// insertmany
-func MongoInsertMany (dbName string, collName string, doc []interface{}) (*mongo.InsertManyResult, error) {
-    var mongoCli = MongodbInit()
-    collection := mongoCli.Database(dbName).Collection(collName)
-    insertResult, err := collection.InsertMany(context.TODO(), doc)
-    if err != nil {
-    	return nil, err
-    }
-    defer func() {
-        if err = mongoCli.Disconnect(context.TODO()); err != nil {
-            log.Fatalln(err)
-        }
-    }()  
-    
-    fmt.Println("Inserted a single document: ", insertResult.InsertedIDs)
-    
-    return insertResult, nil
-}
-
-// updateone
-func MongoUpdateOne (dbName string, collName string, filter interface{}, update interface{}) (*mongo.UpdateResult, error) {
-    var mongoCli = MongodbInit()
-    collection := mongoCli.Database(dbName).Collection(collName)
-    updateResult, err := collection.UpdateOne(context.TODO(), filter, update)
-    if err != nil {
-    	return nil, err
-    }
-    defer func() {
-        if err = mongoCli.Disconnect(context.TODO()); err != nil {
-            log.Fatalln(err)
-        }
-    }()  
-    
-    fmt.Println("Inserted a single document: ", updateResult.InsertedIDs)
-    
-    return updateResult, nil
 }

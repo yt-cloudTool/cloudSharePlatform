@@ -1,8 +1,14 @@
 package db
 
-// 用户表结构
+// 用户表
 type MongoUser struct {
-	Nickname string `bson:"nickname"`        // 昵称
+    LoginName string `bson:"loginname"`      // 登录名(邮箱 手机号 自定义登录名等 默认同昵称 全局唯一)
+    Nickname string `bson:"nickname"`        // 昵称 (仅显示用)
     Password string `bson:"password"`        // 加密后的密码
-    Access   string `bson:"access"`          // 权限 0超级用户 1普通管理员 2普通用户 3冻结
+    Access   int `bson:"access"`          // 权限 0超级用户 1普通管理员 2普通用户 3冻结
+}
+
+// 用户配置信息表 (待定)
+type MongoUserCfg struct {
+    
 }
