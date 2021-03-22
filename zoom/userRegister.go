@@ -4,6 +4,7 @@ import (
     gin "github.com/gin-gonic/gin"
     db "cloudSharePlatform/db"
     // bson "go.mongodb.org/mongo-driver/bson"
+    options "go.mongodb.org/mongo-driver/mongo/options"
     utils "cloudSharePlatform/utils"
 )
 
@@ -21,6 +22,8 @@ func UserRegister(c *gin.Context) {
     if err != nil {
         c.JSON(401, gin.H{ "status": -1, "message": "hash password generate err", "data": "" }); return
     }
+    
+    // 设置数据
     userDbStoreData := db.MongoUser{
         LoginName: loginname,
         Nickname: loginname,
@@ -29,6 +32,8 @@ func UserRegister(c *gin.Context) {
     }
     
     // 添加用户
+    customOptions := options.InsertOne()
+    // customOptions.set
     dbResult, err := db.MongoInsertOne("cloudshareplatform", "user", userDbStoreData)
     if err != nil {
         c.JSON(401, gin.H{ "status": -2, "message": "login name err", "data": "" }); return
