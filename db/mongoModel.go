@@ -7,7 +7,33 @@ import (
     
     _ "go.mongodb.org/mongo-driver/bson"
 	mongo "go.mongodb.org/mongo-driver/mongo"
+    "go.mongodb.org/mongo-driver/x/bsonx"
+    "go.mongodb.org/mongo-driver/mongo/options"
 )
+
+
+// =============================================================================
+// 模型
+// =============================================================================
+// 创建唯一键索引
+func MongoCollectionUniqueIndexModel (dbName string, colName string, field string) {
+    indexOption := options.Index()
+    indexOption.SetBackground(true)
+    indexOption.SetUnique(true)
+    
+    mod := mongo.IndexModel{
+        Keys: bsonx.Doc{{field, bsonx.Int32(1)}},
+        Options: indexOption,
+    }
+    
+    // 创建索引
+    collection := MongodbInit().Database(dbName).Collection(colName)
+    index, err := collection.Indexes().CreateOne(context.TODO(), mod)
+    if err != nil {
+        log.Fatalln("create index err ===========>", err)
+    }
+    fmt.Println("index is ==========>", index)
+}
 
 // =============================================================================
 //    操作方法
@@ -16,6 +42,10 @@ import (
 func MongoInsertOne (dbName string, collName string, doc interface{}) (*mongo.InsertOneResult, error) {
     var mongoCli = MongodbInit()
     collection := mongoCli.Database(dbName).Collection(collName)
+    
+        MongoCollectionUniqueIndexModel("cloudshareplatform", "user", "loginname")
+
+    
     result, err := collection.InsertOne(context.TODO(), doc)
     if err != nil {
     	return nil, err

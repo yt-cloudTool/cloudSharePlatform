@@ -12,6 +12,13 @@ import (
 
 var MongoURI string = "mongodb://localhost:27017"
 
+func init () {
+    // mongo文档模型初始化
+    // ===========================================================================
+    // 创建唯一键索引
+    MongoCollectionUniqueIndexModel("cloudshareplatform", "user", "loginname")
+}
+
 func MongodbInit() *mongo.Client {
 	// Set client options
 	clientOptions := options.Client().ApplyURI(MongoURI)
