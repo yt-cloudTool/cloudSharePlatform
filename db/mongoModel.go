@@ -42,10 +42,6 @@ func MongoCollectionUniqueIndexModel (dbName string, colName string, field strin
 func MongoInsertOne (dbName string, collName string, doc interface{}) (*mongo.InsertOneResult, error) {
     var mongoCli = MongodbInit()
     collection := mongoCli.Database(dbName).Collection(collName)
-    
-        MongoCollectionUniqueIndexModel("cloudshareplatform", "user", "loginname")
-
-    
     result, err := collection.InsertOne(context.TODO(), doc)
     if err != nil {
     	return nil, err
