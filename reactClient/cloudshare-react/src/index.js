@@ -7,6 +7,8 @@ import actions          from './store/actions.js'
 import reducers         from './store/reducers.js'
 import reportWebVitals  from './reportWebVitals'
 import axios            from 'axios'
+import api				from './common/api.js'
+import qs				from "qs"
 import './index.css'
 
 // ===============================================
@@ -41,6 +43,8 @@ window.$store     = store
 window.$actions   = actions
 window.$reducers  = reducers
 window.$axios     = axios
+window.$api		  = api
+window.$qs		  = qs	// json转为formData
 
 // ================================================
 ReactDOM.render(

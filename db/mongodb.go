@@ -5,18 +5,20 @@ import (
 	"fmt"
 	"log"
 
-	// bson "go.mongodb.org/mongo-driver/bson"
+	bson "go.mongodb.org/mongo-driver/bson"
 	mongo "go.mongodb.org/mongo-driver/mongo"
 	options "go.mongodb.org/mongo-driver/mongo/options"
 )
 
 var MongoURI string = "mongodb://localhost:27017"
 
-func init () {
-    // mongo文档模型初始化
-    // ===========================================================================
-    // 创建唯一键索引
-    MongoCollectionUniqueIndexModel("cloudshareplatform", "user", "loginname")
+type BsonM bson.M
+
+func init() {
+	// mongo文档模型初始化
+	// ===========================================================================
+	// 创建唯一键索引
+	MongoCollectionUniqueIndexModel("cloudshareplatform", "user", "loginname")
 }
 
 func MongodbInit() *mongo.Client {
@@ -36,6 +38,6 @@ func MongodbInit() *mongo.Client {
 	}
 
 	fmt.Println("Connected to MongoDB!")
-    
-    return client
+
+	return client
 }

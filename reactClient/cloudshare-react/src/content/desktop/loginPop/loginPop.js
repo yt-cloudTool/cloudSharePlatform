@@ -36,8 +36,16 @@ class LoginPop extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
     confirm () {
-        window.$axios.post("", {}).then((res) => {
-
+        window.$axios.post(
+        	window.$api.login, 
+	        window.$qs.stringify({ // json转formData
+				"loginname": this.state.username,
+				"password": this.state.password
+			})
+		).then((res) => {
+        	if (res.data.status === 1) {
+				// 存储 token 到 localStorage
+			}
         }).catch((err) => {
             
         })
@@ -63,13 +71,12 @@ class LoginPop extends Component {
 							<input className="headerPop_password_input" name="password" value={this.state.password} onChange={this.handleInputChange} type="password" placeholder="Password"/>
 						</div>
 						<div className="headerPop_btnArea">
-							<span class="headerPop_actionBtn" onClick={this.confirm}>Confirm</span>
+							<span className="headerPop_actionBtn" onClick={this.confirm}>Confirm</span>
 						</div>
 					</div>
 					
 				</div>
             </div>
-            
         } else {
             return null
         }
