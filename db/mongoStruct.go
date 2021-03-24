@@ -16,8 +16,8 @@ type MongoUserCfg struct {
 }
 
 // 可用功能表 (侧边栏菜单功能)
-type MongoAvailMenuItem struct {
+type MongoMenuAvailable struct {
 	Code         int `bson:"code"`         // 代号
 	Permissions1 int `bson:"permissions1"` // 所需权限 (用户类型)
-	Permissions2 int `bson:"permissions2"` // 所需二级权限 (用户状态)
+	Permissions2 int `bson:"permissions2"` // 所需二级权限 (用户状态,如有token则判断此项)
 }

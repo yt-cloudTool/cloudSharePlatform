@@ -19,6 +19,7 @@ func init() {
 	// ===========================================================================
 	// 创建唯一键索引
 	MongoCollectionUniqueIndexModel("cloudshareplatform", "user", "loginname")
+	MongoCollectionUniqueIndexModel("cloudshareplatform", "menuavailable", "code")
 }
 
 func MongodbInit() *mongo.Client {
