@@ -1,4 +1,5 @@
 # Logs
+cloudSharePlatform
 logs
 *.log
 npm-debug.log*
