@@ -35,13 +35,10 @@ class SideToolBar extends Component {
             <div className="sideToolBar_container" style={containerStyle}>
             		{ /* 功能区域 */ }
 				<div className="sideToolBar_functionArea">
-	            		<Icon label="aaa" img="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2848534455,1759392655&fm=26&gp=0.jpg"/>
-	            		<Icon/>
-	            		<Icon/>
-	            		<Icon/>
-					<Icon/>
-	            		<Icon/>
-	            		<Icon/>
+	            	<Icon label="New Article" img="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2848534455,1759392655&fm=26&gp=0.jpg"/>
+	            	<Icon label="New Article" img="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2848534455,1759392655&fm=26&gp=0.jpg"/>
+	            	<Icon label="New Article" img="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2848534455,1759392655&fm=26&gp=0.jpg"/>
+	            	<Icon label="New Article" img="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2848534455,1759392655&fm=26&gp=0.jpg"/>
 				</div>
 				{ /* 通知区域 */ }
 				<div className="sideToolBar_notifyArea">
