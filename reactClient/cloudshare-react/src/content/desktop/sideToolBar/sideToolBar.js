@@ -11,6 +11,10 @@
 import React, { Component } from 'react'
 import Icon from "./components/sideToolBarIcon/sideToolBarIcon.js"
 import "./sideToolBar.css"
+import IMG_newarticle from "../../../assets/newarticle.svg"
+import IMG_sharenote from "../../../assets/sharenote.svg"
+import IMG_articlehis from "../../../assets/articlehis.svg"
+import IMG_todobook from "../../../assets/todobook.svg"
 
 class SideToolBar extends Component {
     constructor (props) {
@@ -35,10 +39,10 @@ class SideToolBar extends Component {
             <div className="sideToolBar_container" style={containerStyle}>
             		{ /* 功能区域 */ }
 				<div className="sideToolBar_functionArea">
-	            	<Icon label="New Article" img="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2848534455,1759392655&fm=26&gp=0.jpg"/>
-	            	<Icon label="New Article" img="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2848534455,1759392655&fm=26&gp=0.jpg"/>
-	            	<Icon label="New Article" img="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2848534455,1759392655&fm=26&gp=0.jpg"/>
-	            	<Icon label="New Article" img="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2848534455,1759392655&fm=26&gp=0.jpg"/>
+	            	<Icon label="New Article" img={IMG_newarticle}/>
+				<Icon label="Article His" img={IMG_articlehis}/>
+	            	<Icon label="Share Note" img={IMG_sharenote}/>
+	            	<Icon label="Todo Book" img={IMG_todobook}/>
 				</div>
 				{ /* 通知区域 */ }
 				<div className="sideToolBar_notifyArea">
