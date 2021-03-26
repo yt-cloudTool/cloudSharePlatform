@@ -6,12 +6,11 @@ class MainAreaIcon extends Component {
         return (
             <div className="mainAreaIcon_container">
             	{
-					{/* type==-1时按img字段显示图片 否则按标准来显示 */}
 					this.props.type === -1
 					?
-						this.props.img ? <img className="mainAreaIcon_img" src={this.props.img}/> : ''
+						this.props.img ? (<img className="mainAreaIcon_img" src={this.props.img}/>) : ''
 					:
-						<img src={
+						(<img src={
 							this.props.type === 'note'
 							?
 								'note'
@@ -30,7 +29,7 @@ class MainAreaIcon extends Component {
 										:
 											'normal'
 							
-						}/>
+						}/>)
 				}
 				<p className="mainAreaIcon_label">{this.props.label}</p>
             </div>
