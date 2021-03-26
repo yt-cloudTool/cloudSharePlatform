@@ -40,14 +40,17 @@ class LoginPop extends Component {
         	window.$api.login, 
 	        window.$qs.stringify({ // json转formData
 				"loginname": this.state.username,
-				"password": this.state.password
+				"password":  this.state.password
 			})
 		).then((res) => {
         	if (res.data.status === 1) {
 				// 存储 token 到 localStorage
+				localStorage.setItem("token", 	  res.data.data.token)
+				localStorage.setItem("loginname", res.data.data.loginname)
+				localStorage.setItem("nickname",  res.data.data.nickname)
 			}
         }).catch((err) => {
-            
+        	
         })
     }
 

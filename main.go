@@ -1,11 +1,11 @@
 package main
 
 import (
-    "net/http"
-    // "log"
-    // "fmt"
+	"net/http"
+	// "log"
+	// "fmt"
 	routes "cloudSharePlatform/routes"
-    // db "cloudSharePlatform/db"
+	// db "cloudSharePlatform/db"
 
 	"github.com/gin-gonic/gin"
 )
@@ -13,10 +13,10 @@ import (
 var r *gin.Engine = gin.Default()
 
 func main() {
-    // ==========================================================================
-    // 允许跨域
-    r.Use(func(context *gin.Context) {
-        method := context.Request.Method
+	// ==========================================================================
+	// 允许跨域
+	r.Use(func(context *gin.Context) {
+		method := context.Request.Method
 		context.Writer.Header().Set("Access-Control-Allow-Origin", "*")
 		context.Header("Access-Control-Allow-Origin", "*") // 设置允许访问所有域
 		context.Header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE,UPDATE")
@@ -30,13 +30,14 @@ func main() {
 		}
 		//处理请求
 		context.Next()
-    })
-    // ==========================================================================
+	})
+	// ==========================================================================
 
-    /*
+	/*
 		已使用的路由
 	*/
-	routes.UserAuthorityRegister(r)     // 用户注册
-	routes.UserAuthorityLogin(r)        // 用户登录
+	routes.UserAuthorityRegister(r) // 用户注册
+	routes.UserAuthorityLogin(r)    // 用户登录
+	routes.ServerInfoMemory(r)      // 服务器信息
 	r.Run(":8000")
 }

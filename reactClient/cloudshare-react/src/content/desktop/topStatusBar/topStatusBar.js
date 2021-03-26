@@ -10,14 +10,18 @@ class TopStatusBa extends Component {
             loginStatus:    		"NOLOGIN",
             loginPop_show:  		false,
             dateTime:       		utils.GetDate(),
-            sideToolBar_toggle: 	false
+            sideToolBar_toggle: 	false,
+            serverInfoText:			""
         }
 
         window.$store.subscribe(() => {
             const _state_ = window.$store.getState()
-            this.state.loginStatus      	= _state_.loginStatus
-            this.state.loginPop_show    	= _state_.loginPop_show
-            this.state.sideToolBar_toggle = _state_.sideToolBar_toggle
+            this.setState({
+            	"loginStatus": 		  _state_.loginStatus,
+	            "loginPop_show": 	  _state_.loginPop_show,
+	            "sideToolBar_toggle": _state_.sideToolBar_toggle
+            })
+            
         })
         
         // 循环时间
@@ -32,6 +36,18 @@ class TopStatusBa extends Component {
     
     toggleMenuDrawer () {
     	window.$store.dispatch(window.$actions.set_sideToolBar_toggle(!window.$store.getState().sideToolBar_toggle))
+    }
+    
+    getServerInfo () {
+		 window.$axios.get(window.$api.serverinfo).then((res) => {
+        	if (res.data.status === 1) {
+				this.setState({
+					serverInfoText: res.data.data.numCPU + "cpu"
+				})
+			}
+        }).catch((err) => {
+            
+        })
     }
 
     render () {
@@ -62,6 +78,11 @@ class TopStatusBa extends Component {
                         {/* <span className="topStatusBar_item topStatusBar_search">
                             search
                         </span> */}
+                        
+                        {/* 服务器信息 */}
+                        <span className="topStatusBar_item topStatusBar_serverInfo">
+                            {this.state.serverInfoText}
+                        </span>
 
                         {/* main区域显示效果调整&关闭所有窗口按钮&手机pc版本页面切换 */}
                         <span className="topStatusBar_item topStatusBar_action">
@@ -83,6 +104,10 @@ class TopStatusBa extends Component {
 
             </div>
         )
+    }
+    
+    componentDidMount () {
+    	this.getServerInfo()
     }
 }
 
