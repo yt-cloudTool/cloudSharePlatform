@@ -129,11 +129,27 @@ func MongoFindOne(dbName string, collName string, filter interface{}) (*mongo.Si
 	return result, nil
 }
 
-// findone
-func MongoFind(dbName string, collName string, filter interface{}) (*mongo.Cursor, error) {
+// find
+func MongoFind(dbName string, collName string, filter interface{}, page int64, size int64) ([]map[string]interface{}, error) {
 	var mongoCli = MongodbInit()
+
+	// options
+	var limit int64 = size
+	var skip int64 = (page - 1) * size
+	findOptions := *options.FindOptions{
+		Limit: &limit,
+		Skip:  &skip,
+	}
+	fmt.Println("page, size ===================>", (page-1)*size, size)
+	// if page > 0 && size > 0 {
+	// 	findOptions.SetSkip((page - 1) * size)
+	// 	findOptions.SetLimit(size)
+	// }
+
+	fmt.Println("findOptions ===============>", findOptions)
+
 	collection := mongoCli.Database(dbName).Collection(collName)
-	result, err := collection.Find(context.TODO(), filter)
+	result, err := collection.Find(context.TODO(), filter, findOptions)
 	if err != nil {
 		return nil, err
 	}
@@ -145,5 +161,8 @@ func MongoFind(dbName string, collName string, filter interface{}) (*mongo.Curso
 
 	fmt.Println("Find document: ", result)
 
-	return result, nil
+	var resultData []map[string]interface{}
+	err = result.All(context.TODO(), &resultData)
+
+	return resultData, nil
 }

@@ -6,6 +6,7 @@ import (
 	gin "github.com/gin-gonic/gin"
 
 	// bson "go.mongodb.org/mongo-driver/bson"
+	primitive "go.mongodb.org/mongo-driver/bson/primitive"
 	// options "go.mongodb.org/mongo-driver/mongo/options"
 	utils "cloudSharePlatform/utils"
 )
@@ -29,6 +30,7 @@ func UserRegister(c *gin.Context) {
 
 	// 设置数据
 	userDbStoreData := db.MongoUser{
+		Id_:       primitive.NewObjectID(),
 		LoginName: loginname,
 		Nickname:  loginname,
 		Password:  generatedPwd,

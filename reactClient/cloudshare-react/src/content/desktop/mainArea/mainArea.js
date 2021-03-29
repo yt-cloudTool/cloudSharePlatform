@@ -17,7 +17,7 @@ class MainArea extends Component {
     
     // 获取主数据
     getMainDataList () {
-    	window.$axios.get(window.$api.serverinfo).then((res) => {
+    	window.$axios.get(window.$api.desktopList).then((res) => {
         	if (res.data.status === 1) {
 				this.setState({
 					mainDataList: res.data.data
@@ -43,7 +43,7 @@ class MainArea extends Component {
         )
     }
     componentDidMount () {
-    	this.getMainDataList()
+//    	this.getMainDataList()
     }
 }
 
