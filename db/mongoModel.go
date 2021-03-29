@@ -136,17 +136,15 @@ func MongoFind(dbName string, collName string, filter interface{}, page int64, s
 	// options
 	var limit int64 = size
 	var skip int64 = (page - 1) * size
-	findOptions := *options.FindOptions{
-		Limit: &limit,
-		Skip:  &skip,
-	}
-	fmt.Println("page, size ===================>", (page-1)*size, size)
-	// if page > 0 && size > 0 {
-	// 	findOptions.SetSkip((page - 1) * size)
-	// 	findOptions.SetLimit(size)
-	// }
+	fmt.Println("page, size ===================>", skip, limit)
 
-	fmt.Println("findOptions ===============>", findOptions)
+	findOptions := new(options.FindOptions)
+	if page > 0 && size > 0 {
+		findOptions.SetSkip(skip)
+		findOptions.SetLimit(limit)
+	}
+
+	fmt.Println("findOptions ===============>", &findOptions)
 
 	collection := mongoCli.Database(dbName).Collection(collName)
 	result, err := collection.Find(context.TODO(), filter, findOptions)
