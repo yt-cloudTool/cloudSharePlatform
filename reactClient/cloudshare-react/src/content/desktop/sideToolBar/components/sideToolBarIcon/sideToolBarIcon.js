@@ -17,7 +17,7 @@ class SideToolBarIcon extends Component {
 
     render () {
         return (
-            <div className="sideToolBarIcon_container">
+            <div className="sideToolBarIcon_container" onClick={this.props.onClick}>
             	{
 					this.props.img ? <img className="sideToolBarIcon_img" src={this.props.img}/> : ''
 				}

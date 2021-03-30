@@ -41,11 +41,21 @@ const sideToolBar_toggle = (state = defaultState.sideToolBar_toggle, action) => 
 	}
 }
 
+// 文件编辑器
+const articleEditor_show = (state = defaultState.articleEditor_show, action) => {
+	switch (action.type)  {
+		case 'SET_ARTICLEEDITOR_SHOW': return action.data
+		default: return state
+	}
+}
+
+
 
 export default combineReducers({
 	sideToolBar_show,
 	loginStatus,
 	loginPop_show,
 	windowList,
-	sideToolBar_toggle
+	sideToolBar_toggle,
+	articleEditor_show
 })

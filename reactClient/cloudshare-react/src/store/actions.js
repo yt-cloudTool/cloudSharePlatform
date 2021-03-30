@@ -28,6 +28,12 @@ const set_sideToolBar_toggle = (data)=>{
     }
 }
 
+const set_articleEditor_show = (data)=> {
+	return (dispatch, getState) => {
+        dispatch({ "type": "SET_ARTICLEEDITOR_SHOW", "data": data })
+    }
+}
+
 
 
 export default {
@@ -35,5 +41,6 @@ export default {
     set_loginStatus,
     set_loginPop_show,
     set_windowList,
-    set_sideToolBar_toggle
+    set_sideToolBar_toggle,
+    set_articleEditor_show
 }

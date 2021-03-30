@@ -129,18 +129,20 @@ func MongoFindOne(dbName string, collName string, filter interface{}) (*mongo.Si
 	return result, nil
 }
 
-// find
+// find (dbname collname filter page size) 如果page和size都0则表示不进行分页搜索
 func MongoFind(dbName string, collName string, filter interface{}, page int64, size int64) ([]map[string]interface{}, error) {
 	var mongoCli = MongodbInit()
 
 	// options
-	var limit int64 = size
-	var skip int64 = (page - 1) * size
-
 	findOptions := new(options.FindOptions)
-	if page > 0 && size > 0 {
-		findOptions.SetSkip(skip)
-		findOptions.SetLimit(limit)
+	if page != 0 && size != 0 {
+		var limit int64 = size
+		var skip int64 = (page - 1) * size
+
+		if page > 0 && size > 0 {
+			findOptions.SetSkip(skip)
+			findOptions.SetLimit(limit)
+		}
 	}
 
 	collection := mongoCli.Database(dbName).Collection(collName)

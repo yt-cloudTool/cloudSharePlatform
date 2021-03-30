@@ -28,19 +28,24 @@ class SideToolBar extends Component {
             const _state_ = window.$store.getState()
             this.state.sideToolBar_toggle = _state_.sideToolBar_toggle
         })
-
+        
+    }
+    
+    // 显示文件编辑器
+    handleShowArticleEditor () {
+    	window.$store.dispatch(window.$actions.set_articleEditor_show(true))
     }
     
     render () {
-    		let containerStyle = {
+    	let containerStyle = {
 			left: this.state.sideToolBar_toggle ? 0 : '-280px'
 		}
         return (
             <div className="sideToolBar_container" style={containerStyle}>
             		{ /* 功能区域 */ }
 				<div className="sideToolBar_functionArea">
-	            	<Icon label="New Article" img={IMG_newarticle}/>
-				<Icon label="Article His" img={IMG_articlehis}/>
+	            	<Icon label="New Article" img={IMG_newarticle} onClick={this.handleShowArticleEditor}/>
+					<Icon label="Article His" img={IMG_articlehis}/>
 	            	<Icon label="Share Note" img={IMG_sharenote}/>
 	            	<Icon label="Todo Book" img={IMG_todobook}/>
 				</div>
