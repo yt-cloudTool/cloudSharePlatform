@@ -42,7 +42,7 @@ class TopStatusBa extends Component {
 		window.$axios.get(window.$api.serverinfo).then((res) => {
         	if (res.data.status === 1) {
 				this.setState({
-					serverInfoText: res.data.data.numCPU + "cpu"
+					serverInfoText: res.data.data.numCPU + "core"
 				})
 			}
         }).catch((err) => {
