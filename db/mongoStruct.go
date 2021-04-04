@@ -30,6 +30,9 @@ type MongoMenuAvailable struct {
 }
 
 // 文章表 (桌面图标)
+/*
+   type: normal article note important filebox
+*/
 type MongoArticle struct {
 	Id_         primitive.ObjectID `bson:"_id"`
 	User_id     primitive.ObjectID `bson:"user_id"`     // 用户id
@@ -38,5 +41,5 @@ type MongoArticle struct {
 	Label       string             `bson:"label"`       // 标签名称 (可重复)
 	Content     string             `bson:"content"`     // 内容 (可重复)
 	Fileboxid   string             `bson:"fileboxid"`   // 字符串数组
-	Create_time int64              `bson:"create_time"` //创建时间
+	Create_time int64              `bson:"create_time"` // 创建时间
 }

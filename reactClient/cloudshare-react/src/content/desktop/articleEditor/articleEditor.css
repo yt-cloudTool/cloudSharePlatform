@@ -14,9 +14,9 @@
     width: 90vw;
     max-width: 1920px;
     min-width: 300px;
-    height: 90vh;
+    height: fit-content;
     max-height: 1300px;
-    min-height: 480px;
+/*    min-height: 480px;*/
     background-color: var(--backgroundColor);
     border: 1px solid var(--borderColor);
     border-radius: 3px;
@@ -33,4 +33,49 @@
 	width: 100%;
 	height: calc(100% - 30px);
 	background-color: #fff;
+    padding: 0.5em;
+    overflow: auto;
+}
+.articleEditor_toolArea {
+    
+}
+.articleEditor_toolArea> ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+.articleEditor_toolArea> ul> li {
+    padding-right: 20px;   
+}
+.articleEditor_form {
+    width: 100%;
+    border: none;
+    border-bottom: 1px dotted var(--borderColor);
+    border-radius: 1px;
+    background-color: #fff;
+    padding: 0.3em 0.5em;
+    resize: none;
+    outline: none;
+}
+.articleEditor_form:focus {
+    border-bottom: 1px solid var(--borderColor);
+}
+.articleEditor_formArea {
+    
+}
+.articleEditor_formContainer {
+    margin-top: 0.5em;
+}
+.articleEditor_formArea_article {
+    flex-direction: column;   
+}
+
+#articleEditor_normalContent_textarea, #articleEditor_noteContent_textarea {
+    height: 60.5vh;   
+}
+.articleEditor_actionBtnArea {
+    text-align: center;
+}
+.articleEditor_actionBtnArea button {
+    margin: 0 0.5em;
 }

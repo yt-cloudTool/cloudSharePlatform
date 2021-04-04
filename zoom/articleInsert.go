@@ -45,6 +45,7 @@ func ArticleInsert(c *gin.Context) {
 		c.JSON(500, gin.H{"status": 0, "message": "params not enough", "data": ""})
 		return
 	}
+	// type: normal article note important filebox
 	param_type := c.PostForm("type")
 	if param_type == "" {
 		param_type = "normal" // 默认为 normal
