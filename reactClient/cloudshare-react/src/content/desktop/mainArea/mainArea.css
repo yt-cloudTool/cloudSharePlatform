@@ -5,3 +5,11 @@
 	width: 100vw;
 	height: calc(100vh - 30px);
 }
+.mainArea_inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    width: 100%;
+    height: 100%;
+}

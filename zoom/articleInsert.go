@@ -12,7 +12,6 @@ import (
 	gin "github.com/gin-gonic/gin"
 	// bson "go.mongodb.org/mongo-driver/bson"
 	primitive "go.mongodb.org/mongo-driver/bson/primitive"
-	// primitive "go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 /*
@@ -85,5 +84,5 @@ func ArticleInsert(c *gin.Context) {
 	fmt.Println("dbResult ===========>", dbResult)
 
 	// 操作articleList表
-	c.JSON(200, gin.H{"status": 0, "message": "ok", "data": dbResult})
+	c.JSON(200, gin.H{"status": 1, "message": "ok", "data": dbResult})
 }

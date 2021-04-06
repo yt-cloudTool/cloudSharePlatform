@@ -92,19 +92,23 @@ class ArticleEditor extends Component {
     handleSubmit () {
     	window.$axios.post(
         	window.$api.articleInsert, 
-			window.$qs.stringify({ 						 // json转formData
-				type: 			this.state.form_type, 	 // 类型 (判断图标类型)
-				img: 			this.state.form_iconImg, // 图标 (如果type==-1则用此字段显示图标)
-				label: 			this.state.form_label,   // 标签名称 (可重复)
-				content: 		this.state.form_content.toHTML ? this.state.form_content.toHTML() : this.state.form_content, // 内容
-				fileboxid: 		'',             		 // 字符串数组
+			window.$qs.stringify({ 					// json转formData
+				type: 	   this.state.form_type, 	// 类型 (判断图标类型)
+				img: 	   this.state.form_iconImg, // 图标 (如果type==-1则用此字段显示图标)
+				label: 	   this.state.form_label,   // 标签名称 (可重复)
+				content:   this.state.form_content.toHTML ? this.state.form_content.toHTML() : this.state.form_content, // 内容
+				fileboxid: '',             		 	// 字符串数组
 			})
 		).then((res) => {
         	if (res.data.status === 1) {
-				// 存储 token 到 localStorage
-				localStorage.setItem("token", 	  res.data.data.token)
-				localStorage.setItem("loginname", res.data.data.loginname)
-				localStorage.setItem("nickname",  res.data.data.nickname)
+				this.handle_articleEditor_hide()
+				// 状态还原
+				this.setState({
+		            form_type: 	  	"normal", 	// 文章类型
+		            form_iconImg: 	"", 		// 自定义图标
+		            form_title:   	"",			// 标题
+		            form_content: 	null, 		// 内容 | 富文本内容
+		        })
 			}
         }).catch((err) => {
         	

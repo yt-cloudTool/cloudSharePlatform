@@ -7,7 +7,9 @@ class MainArea extends Component {
         super(props)
 
         this.state = {
-            mainDataList: []
+            dataList: [],
+            page: 1,
+            size: 100,
         }
 
         window.$store.subscribe(() => {
@@ -17,33 +19,48 @@ class MainArea extends Component {
     
     // 获取主数据
     getMainDataList () {
-    	window.$axios.get(window.$api.desktopList).then((res) => {
+    	window.$axios.get(window.$api.articleList, {
+			params: {
+				page: this.state.page,
+				size: this.state.size
+			}
+		}).then((res) => {
+			console.log('res =>', res)
         	if (res.data.status === 1) {
-				this.setState({
-					mainDataList: res.data.data
-				})
+				this.setState({ dataList: res.data.data })
 			}
         }).catch((err) => {
             
         })
     }
     
+    // 跳转页数
+    handlePageChange (pageNum) {
+    	this.setState({ page: pageNum})
+    }
+    
+    // 每页数量
+    handleSizeChange (sizeNum) {
+    	this.setState({ size: sizeNum })
+    }
+    
     render () {
         return (
             <div className="mainArea_container">
-	            {
-	            	this.state.mainDataList.map((ite, ind) => {
-						return (
-							<Icon label={ite.label} type={ite.type} img={ite.img}/>
-						)
-					})
-	            }
-            	<Icon/>
+            	<div className="mainArea_inner">
+		            {
+		            	this.state.dataList.map((ite, ind) => {
+							return (
+								<Icon label={ite.label} type={ite.type} img={ite.img}/>
+							)
+						})
+		            }
+				</div>
             </div>
         )
     }
     componentDidMount () {
-//    	this.getMainDataList()
+   		this.getMainDataList()
     }
 }
 

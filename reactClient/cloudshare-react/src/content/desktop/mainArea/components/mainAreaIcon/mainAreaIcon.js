@@ -11,7 +11,7 @@ class MainAreaIcon extends Component {
 					?
 						this.props.img ? (<img className="mainAreaIcon_img" src={this.props.img}/>) : ''
 					:
-						(<img src={
+						(<img className="mainAreaIcon_img" src={
 							this.props.type === 'note'
 							?
 								'note'

@@ -16,7 +16,7 @@ import './index.css'
 axios.interceptors.request.use((config) => {
   const token = window.localStorage.getItem('token')
   if (token) {
-      config.headers.Authorization = token
+      config.headers.token = token
   }
   return config
 }, (err) => {
@@ -31,6 +31,7 @@ axios.interceptors.response.use((res) => {
       case 400:
         break
       case 401:
+		// TODO显示登录弹窗
         break
       default: break
     }

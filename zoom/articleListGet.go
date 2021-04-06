@@ -93,5 +93,5 @@ func ArticleListGet(c *gin.Context) {
 	// dbResult.All()
 
 	// 操作articleList表
-	c.JSON(200, gin.H{"status": 0, "message": "ok", "data": dbResult})
+	c.JSON(200, gin.H{"status": 1, "message": "ok", "data": dbResult})
 }

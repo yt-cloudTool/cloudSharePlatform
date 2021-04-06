@@ -45,9 +45,11 @@ class LoginPop extends Component {
 		).then((res) => {
         	if (res.data.status === 1) {
 				// 存储 token 到 localStorage
+				localStorage.setItem("access", 	  res.data.data.access)
 				localStorage.setItem("token", 	  res.data.data.token)
 				localStorage.setItem("loginname", res.data.data.loginname)
 				localStorage.setItem("nickname",  res.data.data.nickname)
+				this.hidePop()
 			}
         }).catch((err) => {
         	

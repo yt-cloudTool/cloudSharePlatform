@@ -18,9 +18,6 @@ class Desktop extends Component {
 				<MainArea/>
                 <UploadPop/>
                 <ArticleEditor/>
-                
-                <Window/>
-                
             </div>
         )
     }

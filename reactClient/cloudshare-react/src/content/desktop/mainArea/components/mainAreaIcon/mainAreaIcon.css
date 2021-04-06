@@ -1,9 +1,16 @@
 .mainAreaIcon_container {
-    
+    margin-top: 8px;
+    margin-left: 8px;
+    margin-bottom: 16px;
 }
 .mainAreaIcon_img {
-    
+    display: inline-block;
+    width: 80px;
+    height: 80px;    
+    border: 1px solid var(--borderColor);
+    border-radius: 2px;
 }
 .mainAreaIcon_label {
-    
+    font-size: 11px; 
+    text-align: center;   
 }
