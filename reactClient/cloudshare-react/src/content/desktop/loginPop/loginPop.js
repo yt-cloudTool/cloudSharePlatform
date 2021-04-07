@@ -15,7 +15,8 @@ class LoginPop extends Component {
         this.showPop           = this.showPop.bind(this)
         this.hidePop           = this.hidePop.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this)
-        this.confirm           = this.confirm.bind(this)
+        this.login           	  = this.login.bind(this)
+        this.register          = this.register.bind(this)
 
         window.$store.subscribe(() => {
             const _state_ = window.$store.getState()
@@ -35,8 +36,28 @@ class LoginPop extends Component {
     handleInputChange (e) {
         this.setState({ [e.target.name]: e.target.value })
     }
-    confirm () {
-        window.$axios.post(
+    register (mode) {
+		window.$axios.post(
+        	window.$api.register, 
+	        window.$qs.stringify({ // json转formData
+				"loginname": this.state.username,
+				"password":  this.state.password
+			})
+		).then((res) => {
+        	if (res.data.status === 1) {
+				// 存储 token 到 localStorage
+//					localStorage.setItem("access", 	  res.data.data.access)
+//					localStorage.setItem("token", 	  res.data.data.token)
+//					localStorage.setItem("loginname", res.data.data.loginname)
+//					localStorage.setItem("nickname",  res.data.data.nickname)
+				this.hidePop()
+			}
+        }).catch((err) => {
+        	
+        })
+	}
+	login () {
+        	window.$axios.post(
         	window.$api.login, 
 	        window.$qs.stringify({ // json转formData
 				"loginname": this.state.username,
@@ -49,6 +70,8 @@ class LoginPop extends Component {
 				localStorage.setItem("token", 	  res.data.data.token)
 				localStorage.setItem("loginname", res.data.data.loginname)
 				localStorage.setItem("nickname",  res.data.data.nickname)
+				// 设置顶栏昵称
+				window.$store.dispatch(window.$actions.set_loginStatus('LOGINED'))
 				this.hidePop()
 			}
         }).catch((err) => {
@@ -75,8 +98,10 @@ class LoginPop extends Component {
 						<div className="headerPop_passwordInput_container">
 							<input className="headerPop_password_input" name="password" value={this.state.password} onChange={this.handleInputChange} type="password" placeholder="Password"/>
 						</div>
+						
 						<div className="headerPop_btnArea">
-							<span className="headerPop_actionBtn" onClick={this.confirm}>Confirm</span>
+							<span className="headerPop_actionBtn" onClick={this.register}>Register</span>
+							<span className="headerPop_actionBtn" onClick={this.login}>Login</span>
 						</div>
 					</div>
 					

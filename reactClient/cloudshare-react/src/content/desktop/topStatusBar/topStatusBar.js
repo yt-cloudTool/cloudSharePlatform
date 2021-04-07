@@ -107,7 +107,12 @@ class TopStatusBa extends Component {
     }
     
     componentDidMount () {
-    	this.getServerInfo()
+    		this.getServerInfo()
+		if (localStorage.getItem("token")) {
+			window.$store.dispatch(window.$actions.set_loginStatus('LOGINED'))
+		} else {
+			window.$store.dispatch(window.$actions.set_loginStatus('NOLOGIN'))
+		}
     }
 }
 
