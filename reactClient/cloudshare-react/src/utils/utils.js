@@ -2,14 +2,14 @@ export default {
     
     // 返回特定格式时间日期
     GetDate: function (timestamp) {
-        let dateObj
+        let dateObj = null
         if (timestamp) {
             dateObj = new Date(timestamp)
         } else {
             dateObj = new Date()
         }
         const year    = dateObj.getFullYear()
-        const month   = (dateObj.getMonth() - 1) >= 10 ? (dateObj.getMonth() - 1) : ('0' + (dateObj.getMonth() - 1))
+        const month   = (dateObj.getMonth() + 1) >= 10 ? (dateObj.getMonth() + 1) : ('0' + (dateObj.getMonth() + 1))
         let day       = dateObj.getDay()
         switch (day) {
             case 7: day = 'SUN'; break
