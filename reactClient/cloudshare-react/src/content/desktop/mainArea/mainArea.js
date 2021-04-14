@@ -10,10 +10,16 @@ class MainArea extends Component {
             dataList: [],
             page: 1,
             size: 100,
+            mainData_refresh: 0, // 主列表刷新时间戳标识
         }
 
         window.$store.subscribe(() => {
             const _state_ = window.$store.getState()
+            // 如果判断有更新主列表数据状态
+            if (_state_.mainData_refresh > this.state.mainData_refresh) {
+	            this.setState({ "mainData_refresh": _state_.mainData_refresh })
+				this.getMainDataList() // 更新数据      	
+            }
         })
     }
     
@@ -51,7 +57,7 @@ class MainArea extends Component {
 		            {
 		            	this.state.dataList.map((ite, ind) => {
 							return (
-								<Icon label={ite.label} type={ite.type} img={ite.img}/>
+								<Icon key={ind} label={ite.label} type={ite.type} img={ite.img}/>
 							)
 						})
 		            }

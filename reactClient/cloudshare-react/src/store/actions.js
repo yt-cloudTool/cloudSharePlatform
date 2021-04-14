@@ -34,6 +34,13 @@ const set_articleEditor_show = (data)=> {
     }
 }
 
+const set_mainData_refresh = (data /*timestamp*/)=> {
+	return (dispatch, getState) => {
+        dispatch({ "type": "SET_MAINDATA_REFRESH", "data": data })
+    }
+}
+
+
 
 
 export default {
@@ -42,5 +49,6 @@ export default {
     set_loginPop_show,
     set_windowList,
     set_sideToolBar_toggle,
-    set_articleEditor_show
+    set_articleEditor_show,
+    set_mainData_refresh
 }

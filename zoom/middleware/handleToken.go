@@ -15,7 +15,8 @@ func HandleTokenMid(c *gin.Context) {
 		c.JSON(401, gin.H{"status": 0, "message": "access err", "data": ""})
 		c.Abort()
 		return
+	} else {
+		c.Set("user_id", user_id)
+		c.Next()
 	}
-	c.Set("user_id", user_id)
-	c.Next()
 }

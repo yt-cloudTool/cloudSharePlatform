@@ -49,6 +49,13 @@ const articleEditor_show = (state = defaultState.articleEditor_show, action) => 
 	}
 }
 
+// 刷新主列表数据
+const mainData_refresh = (state = defaultState.mainData_refresh, action) => {
+	switch (action.type)  {
+		case 'SET_MAINDATA_REFRESH': return action.data
+		default: return state
+	}
+}
 
 
 export default combineReducers({
@@ -57,5 +64,6 @@ export default combineReducers({
 	loginPop_show,
 	windowList,
 	sideToolBar_toggle,
-	articleEditor_show
+	articleEditor_show,
+	mainData_refresh
 })

@@ -43,3 +43,13 @@ type MongoArticle struct {
 	Fileboxid   string             `bson:"fileboxid"`   // 字符串数组
 	Create_time int64              `bson:"create_time"` // 创建时间
 }
+
+// 文件表
+type MongoFile struct {
+	Id_           primitive.ObjectID `bson:"_id"`
+	User_id       primitive.ObjectID `bson:"user_id"`       // 用户iduser
+	IsTmp         int                `bson:"is_tmp"`        // 是否是临时文件
+	FileName      string             `bson:"filename"`      // 文件名
+	StoreFileName string             `bson:"storefilename"` // 存储的文件名
+	Size          int64              `bson:"size"`          // 文件大小
+}

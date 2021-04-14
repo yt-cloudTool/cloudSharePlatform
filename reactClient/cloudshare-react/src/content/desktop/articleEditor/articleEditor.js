@@ -69,7 +69,7 @@ class ArticleEditor extends Component {
     // 表单中富文本方法
     handle_formBraftEditor_change (editorState) {
 	   	this.setState({"form_content": editorState})
-				console.log("e ==========>", this.state.form_content)
+		console.log("e ==========>", this.state.form_content)
 
     }
     
@@ -110,6 +110,8 @@ class ArticleEditor extends Component {
 		            form_content: 	null, 		// 内容 | 富文本内容
 		        })
 			}
+			// 刷新主列表
+			window.$store.dispatch(window.$actions.set_mainData_refresh(new Date().getTime()))
         }).catch((err) => {
         	
         })

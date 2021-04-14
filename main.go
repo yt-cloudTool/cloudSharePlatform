@@ -13,6 +13,9 @@ import (
 var r *gin.Engine = gin.Default()
 
 func main() {
+	// 表单限制大小
+	r.MaxMultipartMemory = 32768 << 20
+
 	// ==========================================================================
 	// 允许跨域
 	r.Use(func(context *gin.Context) {
@@ -42,5 +45,6 @@ func main() {
 	routes.ServerInfoMemory(r)        // 服务器信息
 	routes.ArticleInsert(r)           // 新增文章
 	routes.ArticleListGet(r)          // 获取文章列表
+	routes.FileUpload(r)              // 文件上传
 	r.Run(":8000")
 }
