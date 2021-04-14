@@ -1,5 +1,6 @@
 # Logs
 cloudSharePlatform
+fileStore/
 logs
 *.log
 npm-debug.log*
