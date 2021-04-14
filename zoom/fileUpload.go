@@ -126,6 +126,8 @@ func FileUpload(c *gin.Context) {
 			dbResult, err := db.MongoInsertOne("cloudshareplatform", "file", MongoFile)
 			if err != nil {
 				// 数据库存储失败也要文件存储失败 失败处理
+				lock.Lock()
+				defer lock.Unlock()
 				errStoreFileArr = append(errStoreFileArr, fileName)
 				wg.Done()
 				return
@@ -139,6 +141,8 @@ func FileUpload(c *gin.Context) {
 				FileSize:      fileSize,
 				FileId:        dbResult.InsertedID.(primitive.ObjectID).Hex(),
 			}
+			lock.Lock()
+			defer lock.Unlock()
 			succStoreFileArr = append(succStoreFileArr, succIte)
 			wg.Done()
 		}(file)
