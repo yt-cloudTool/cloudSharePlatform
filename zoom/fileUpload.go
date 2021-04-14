@@ -137,6 +137,7 @@ func FileUpload(c *gin.Context) {
 				FileName:      fileName,
 				StoreFileName: storeFileName,
 				FileSize:      fileSize,
+				FileId:        dbResult.InsertedID.(primitive.ObjectID).Hex(),
 			}
 			succStoreFileArr = append(succStoreFileArr, succIte)
 			wg.Done()
