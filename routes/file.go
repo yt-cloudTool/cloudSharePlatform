@@ -15,5 +15,5 @@ func FileUpload(r *gin.Engine) {
 
 // 文件获取 GET
 func FileDownload(r *gin.Engine) {
-	// r.GET("/api/filedownload", zoom.FileDownload)
+	r.GET("/api/filedownload", zoom.FileDownload)
 }

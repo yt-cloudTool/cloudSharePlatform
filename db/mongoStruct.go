@@ -49,6 +49,7 @@ type MongoFile struct {
 	Id_           primitive.ObjectID `bson:"_id"`
 	User_id       primitive.ObjectID `bson:"user_id"`       // 用户iduser
 	IsTmp         int                `bson:"is_tmp"`        // 是否是临时文件
+	IsPub         int                `bson:"is_pub"`        // 是否是公开文件
 	FileName      string             `bson:"filename"`      // 文件名
 	StoreFileName string             `bson:"storefilename"` // 存储的文件名
 	Size          int64              `bson:"size"`          // 文件大小

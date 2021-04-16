@@ -1,6 +1,7 @@
 package zoom
 
 import (
+	config "cloudSharePlatform/config"
 	db "cloudSharePlatform/db"
 	utils "cloudSharePlatform/utils"
 
@@ -20,6 +21,14 @@ import (
 	// bson "go.mongodb.org/mongo-driver/bson"
 	primitive "go.mongodb.org/mongo-driver/bson/primitive"
 )
+
+// 存储成功项类型定义
+type fileSuccStore struct {
+	FileName      string `json:"filename"`
+	StoreFileName string `json:"store_filename"`
+	FileSize      int64  `json:"size"`
+	FileId        string `json:"fileid"`
+}
 
 /*
    header传token
@@ -45,15 +54,26 @@ func FileUpload(c *gin.Context) {
 	// -------------------------------------------------------------------------
 	// 参数
 	param_count := c.PostForm("count")
-	param_isTmp := c.PostForm("is_tmp")
 	// isTmp参数必须
+	param_isTmp := c.PostForm("is_tmp")
 	if param_isTmp == "" {
-		c.JSON(500, gin.H{"status": 0, "message": "params not enough", "data": ""})
+		c.JSON(500, gin.H{"status": 0, "message": "params not enough: is_tmp", "data": ""})
 		return
 	}
 	param_isTmp_int, err := strconv.Atoi(param_isTmp)
 	if err != nil {
-		c.JSON(500, gin.H{"status": 0, "message": "params not enough", "data": ""})
+		c.JSON(500, gin.H{"status": 0, "message": "params is_tmp wrong format", "data": ""})
+		return
+	}
+	// isPub参数必须
+	param_isPub := c.PostForm("is_pub")
+	if param_isPub == "" {
+		c.JSON(500, gin.H{"status": 0, "message": "params not enough: is_pub", "data": ""})
+		return
+	}
+	param_isPub_int, err := strconv.Atoi(param_isPub)
+	if err != nil {
+		c.JSON(500, gin.H{"status": 0, "message": "params is_pub wrong format", "data": ""})
 		return
 	}
 	// -------------------------------------------------------------------------
@@ -68,15 +88,8 @@ func FileUpload(c *gin.Context) {
 	// file arr
 	fileArr := multiForm.File["file"]
 
-	// 存储成功项类型定义
-	type succStore struct {
-		FileName      string
-		StoreFileName string
-		FileSize      int64
-		FileId        string
-	}
 	// 存储成功的文件名/id数组
-	var succStoreFileArr []succStore
+	var succStoreFileArr []fileSuccStore
 	// 存储出错的文件名数组
 	var errStoreFileArr []string = []string{}
 
@@ -98,7 +111,7 @@ func FileUpload(c *gin.Context) {
 			storeFileName := utils.SnowflakeGenerate() + "_" + fileName
 
 			// 创建目录
-			storeFilePath := "fileStore/" + user_id.(primitive.ObjectID).Hex() + "/"
+			storeFilePath := config.GetFileStorePath() + user_id.(primitive.ObjectID).Hex() + "/"
 			os.MkdirAll(storeFilePath, 0766)
 
 			// 存储文件
@@ -118,6 +131,7 @@ func FileUpload(c *gin.Context) {
 				Id_:           primitive.NewObjectID(),
 				User_id:       user_id.(primitive.ObjectID),
 				IsTmp:         param_isTmp_int,
+				IsPub:         param_isPub_int,
 				FileName:      fileName,
 				StoreFileName: storeFileName,
 				Size:          fileSize,
@@ -135,7 +149,7 @@ func FileUpload(c *gin.Context) {
 			fmt.Println("dbResult ===========>", dbResult)
 
 			// 存储成功的数组追加
-			succIte := succStore{
+			succIte := fileSuccStore{
 				FileName:      fileName,
 				StoreFileName: storeFileName,
 				FileSize:      fileSize,
