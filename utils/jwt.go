@@ -14,7 +14,7 @@ import (
 var JwtSecureSecret string = "secureSecretText"
 
 // 过期时间
-var JwtExpiresAt int64 = int64(time.Now().Unix() + (3600 * 24))
+var JwtExpiresAt int64 = int64(time.Now().Unix() + (3600 * 24 * 365))
 
 // 结构
 type JwtCustomClaims struct {

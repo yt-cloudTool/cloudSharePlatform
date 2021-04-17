@@ -54,3 +54,13 @@ type MongoFile struct {
 	StoreFileName string             `bson:"storefilename"` // 存储的文件名
 	Size          int64              `bson:"size"`          // 文件大小
 }
+
+// 文件box表
+type MongoFileBox struct {
+	Id_     primitive.ObjectID `bson:"_id"`
+	User_id primitive.ObjectID `bson:"user_id"`  // 用户iduser
+	IsTmp   int                `bson:"is_tmp"`   // 是否是临时文件box
+	IsPub   int                `bson:"is_pub"`   // 是否是公开文件box
+	BoxName string             `bson:"box_name"` // 文件box名
+	Files   []string           `bson:"files`     // 文件id数组
+}

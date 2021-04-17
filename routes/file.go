@@ -17,3 +17,13 @@ func FileUpload(r *gin.Engine) {
 func FileDownload(r *gin.Engine) {
 	r.GET("/api/filedownload", zoom.FileDownload)
 }
+
+// 生成 fileBox
+func FileBoxCreate(r *gin.Engine) {
+	r.POST("/api/fileboxcreate", middleware.HandleTokenMid, zoom.FileBoxCreate)
+}
+
+// 文件添加到filebox
+func FileBoxInsertInto(r *gin.Engine) {
+	r.POST("/api/fileboxinsertinto", middleware.HandleTokenMid, zoom.FileBoxInsertInto)
+}

@@ -35,7 +35,8 @@ type fileSuccStore struct {
    params:
         count: int64 文件数量(可选)
         is_tmp: int 是否是临时文件 0:否 1:是
-        file: fileObj[]
+        is_pub: int 是否是公开文件 0:否 1:是
+        file: fileObj[multi]
 
 */
 func FileUpload(c *gin.Context) {

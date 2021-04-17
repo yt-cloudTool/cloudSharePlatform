@@ -47,5 +47,7 @@ func main() {
 	routes.ArticleListGet(r)          // 获取文章列表
 	routes.FileUpload(r)              // 文件上传
 	routes.FileDownload(r)            // 文件下载
+	routes.FileBoxCreate(r)           // 文件box生成
+	routes.FileBoxInsertInto(r)       // 文件添加到文件box
 	r.Run(":8000")
 }

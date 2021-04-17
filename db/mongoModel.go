@@ -163,3 +163,143 @@ func MongoFind(dbName string, collName string, filter interface{}, page int64, s
 
 	return resultData, nil
 }
+
+// =============================================================================
+//    事务
+// =============================================================================
+// transaction
+type MongoTransacStruct struct {
+	DbName  string
+	ColName string
+
+	ctx        context.Context
+	client     *mongo.Client
+	database   *mongo.Database
+	collection *mongo.Collection
+	session    mongo.Session
+	errSlice   []error
+
+	// 记录这次操作的结果(按类型分为五种)
+	InsertOneResult  *mongo.InsertOneResult
+	InsertManyResult *mongo.InsertManyResult
+	UpdateResult     *mongo.UpdateResult
+	FindOneResult    *mongo.SingleResult
+	FindResult       *mongo.Cursor
+
+	// 操作结果历史
+	ResultRecord []interface{}
+}
+
+func (self *MongoTransacStruct) MongoTransaction() *MongoTransacStruct {
+	var err error
+	// cient
+	self.client = MongodbInit()
+	// database
+	self.database = self.client.Database(self.DbName)
+	// ctx
+	self.ctx = context.Background()
+	// collection
+	self.collection = self.database.Collection(self.ColName)
+	// session
+	self.session, err = self.database.Client().StartSession()
+	if err != nil {
+		self.errSlice = append(self.errSlice, err)
+		return self
+	}
+	// 事务开始
+	err = self.session.StartTransaction()
+	if err != nil {
+		self.errSlice = append(self.errSlice, err)
+		return self
+	}
+	return self
+}
+
+func (self *MongoTransacStruct) MongoTransactionAbort() *MongoTransacStruct {
+	self.session.AbortTransaction(self.ctx)
+	return self
+}
+
+func (self *MongoTransacStruct) MongoTransactionCommit() *MongoTransacStruct {
+	self.session.CommitTransaction(self.ctx)
+	return self
+}
+
+func (self *MongoTransacStruct) MongoTransactionEnd() *MongoTransacStruct {
+	self.session.EndSession(self.ctx)
+	self.database.Client().Disconnect(self.ctx)
+	return self
+}
+
+func (self *MongoTransacStruct) MongoTransactionInsertOne(doc interface{}, opts ...*options.InsertOneOptions) *MongoTransacStruct {
+	result, err := self.collection.InsertOne(self.ctx, doc, opts...)
+	if err != nil {
+		self.errSlice = append(self.errSlice, err)
+		return self
+	}
+	self.InsertOneResult = result
+	self.ResultRecord = append(self.ResultRecord, result)
+	return self
+}
+
+func (self *MongoTransacStruct) MongoTransactionInsertMoney(doc []interface{}, opts ...*options.InsertManyOptions) *MongoTransacStruct {
+	result, err := self.collection.InsertMany(self.ctx, doc, opts...)
+	if err != nil {
+		self.errSlice = append(self.errSlice, err)
+		return self
+	}
+	self.InsertManyResult = result
+	self.ResultRecord = append(self.ResultRecord, result)
+	return self
+}
+
+func (self *MongoTransacStruct) MongoTransactionUpdateOne(filter interface{}, update interface{}, opts ...*options.UpdateOptions) *MongoTransacStruct {
+	result, err := self.collection.UpdateOne(self.ctx, filter, update, opts...)
+	if err != nil {
+		self.errSlice = append(self.errSlice, err)
+		return self
+	}
+	self.UpdateResult = result
+	self.ResultRecord = append(self.ResultRecord, result)
+	return self
+}
+
+func (self *MongoTransacStruct) MongoTransactionUpdateMany(filter interface{}, update interface{}, opts ...*options.UpdateOptions) *MongoTransacStruct {
+	result, err := self.collection.UpdateMany(self.ctx, filter, update, opts...)
+	if err != nil {
+		self.errSlice = append(self.errSlice, err)
+		return self
+	}
+	self.UpdateResult = result
+	self.ResultRecord = append(self.ResultRecord, result)
+	return self
+}
+
+func (self *MongoTransacStruct) MongoTransactionFindOne(filter interface{}, opts ...*options.FindOneOptions) *MongoTransacStruct {
+	result := self.collection.FindOne(self.ctx, filter, opts...)
+	self.FindOneResult = result
+	self.ResultRecord = append(self.ResultRecord, result)
+	return self
+}
+
+func (self *MongoTransacStruct) MongoTransactionFind(filter interface{}, page int64, size int64) *MongoTransacStruct {
+	// options
+	findOptions := new(options.FindOptions)
+	if page != 0 && size != 0 {
+		var limit int64 = size
+		var skip int64 = (page - 1) * size
+
+		if page > 0 && size > 0 {
+			findOptions.SetSkip(skip)
+			findOptions.SetLimit(limit)
+		}
+	}
+	result, err := self.collection.Find(self.ctx, filter, findOptions)
+	if err != nil {
+		self.errSlice = append(self.errSlice, err)
+		return self
+	}
+	self.FindResult = result
+	self.ResultRecord = append(self.ResultRecord, result)
+	return self
+}
