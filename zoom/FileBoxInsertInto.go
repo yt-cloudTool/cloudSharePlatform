@@ -62,6 +62,8 @@ func FileBoxInsertInto(c *gin.Context) {
 	fmt.Println("fileId_array ========>", fileId_array)
 	// -------------------------------------------------------------------------
 	// 将数据添加到filebox表
+	// 成功id数组
+	var succUpdateArr []interface{}
 	dbResult := new(mongo.UpdateResult)
 	for _, fileIdArray_ite := range fileId_array {
 		dbResult, err = db.MongoUpdateOne("cloudshareplatform", "filebox", bson.M{
@@ -76,8 +78,8 @@ func FileBoxInsertInto(c *gin.Context) {
 			c.JSON(500, gin.H{"status": 0, "message": "db update to filbox err", "data": err.Error()})
 			return
 		}
-
+		succUpdateArr = append(succUpdateArr, dbResult)
 	}
 
-	c.JSON(200, gin.H{"status": 1, "message": "ok", "data": dbResult})
+	c.JSON(200, gin.H{"status": 1, "message": "ok", "data": succUpdateArr})
 }

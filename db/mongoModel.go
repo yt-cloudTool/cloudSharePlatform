@@ -164,6 +164,46 @@ func MongoFind(dbName string, collName string, filter interface{}, page int64, s
 	return resultData, nil
 }
 
+// delete one (dbname collname filter)
+func MongoDeleteOne(dbName string, collName string, filter interface{}) (*mongo.DeleteResult, error) {
+	var mongoCli = MongodbInit()
+
+	collection := mongoCli.Database(dbName).Collection(collName)
+	result, err := collection.DeleteOne(context.TODO(), filter)
+	if err != nil {
+		return nil, err
+	}
+	defer func() {
+		if err := mongoCli.Disconnect(context.TODO()); err != nil {
+			log.Fatalln(err)
+		}
+	}()
+
+	fmt.Println("delete one document: ", result)
+
+	return result, nil
+}
+
+// delete many (dbname collname filter)
+func MongoDeleteMany(dbName string, collName string, filter interface{}) (*mongo.DeleteResult, error) {
+	var mongoCli = MongodbInit()
+
+	collection := mongoCli.Database(dbName).Collection(collName)
+	result, err := collection.DeleteMany(context.TODO(), filter)
+	if err != nil {
+		return nil, err
+	}
+	defer func() {
+		if err := mongoCli.Disconnect(context.TODO()); err != nil {
+			log.Fatalln(err)
+		}
+	}()
+
+	fmt.Println("delete many document: ", result)
+
+	return result, nil
+}
+
 // =============================================================================
 //    事务
 // =============================================================================
