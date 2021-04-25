@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Icon from "./components/mainAreaIcon/mainAreaIcon.js"
 import "./mainArea.css"
+import FileBox from "../../pubComponent/normal/fileBox/fileBox.js"
 
 class MainArea extends Component {
 	constructor (props) {
@@ -54,6 +55,7 @@ class MainArea extends Component {
         return (
             <div className="mainArea_container">
             	<div className="mainArea_inner">
+					<FileBox/>
 		            {
 		            	this.state.dataList.map((ite, ind) => {
 							return (

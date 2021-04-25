@@ -57,7 +57,7 @@ class LoginPop extends Component {
         })
 	}
 	login () {
-        	window.$axios.post(
+        window.$axios.post(
         	window.$api.login, 
 	        window.$qs.stringify({ // json转formData
 				"loginname": this.state.username,

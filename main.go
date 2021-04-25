@@ -49,7 +49,7 @@ func main() {
 	routes.FileDownload(r)            // 文件下载
 	routes.FileBoxCreate(r)           // 文件box生成
 	routes.FileBoxInsertInto(r)       // 文件添加到文件box
-	routes.FileBoxDelete(r)
-	routes.FileBoxDeleteItem(r)
+	routes.FileBoxDelete(r)           // 删除文件box
+	routes.FileBoxDeleteItem(r)       // 删除文件box中文件
 	r.Run(":8000")
 }
