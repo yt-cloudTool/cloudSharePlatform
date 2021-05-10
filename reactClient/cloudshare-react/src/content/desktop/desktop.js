@@ -4,7 +4,7 @@ import SideToolBar 	 	from "./sideToolBar/sideToolBar.js"
 import LoginPop			from "./loginPop/loginPop.js"
 import MainArea			from "./mainArea/mainArea.js"
 import UploadPop        from "./uploadPop/uploadPop.js"
-import Window           from "../pubComponent/usedToSlots/window/window.js"
+import Window           from "../pubComponent/window/window.js"
 import ArticleEditor	from "./articleEditor/articleEditor.js"
 import "./desktop.css"
 

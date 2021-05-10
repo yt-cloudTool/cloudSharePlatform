@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import Icon from "./components/mainAreaIcon/mainAreaIcon.js"
-import "./mainArea.css"
-import FileBox from "../../pubComponent/fileBox/fileBox.js"
-import TmpFileBoxBar from "./tmpFileBoxBar/tmpFileBoxBar.js"
+import "./tmpFileBoxBar.css"
+import FileBox from "../../../pubComponent/fileBox/fileBox.js"
 
-class MainArea extends Component {
+class TmpFileBox extends Component {
 	constructor (props) {
         super(props)
 
@@ -54,23 +52,10 @@ class MainArea extends Component {
     
     render () {
         return (
-            <div className="mainArea_container">
-            	<div className="mainArea_inner">
-					<div className="mainArea_inner_iconArea">
-			            {
-			            	this.state.dataList.map((ite, ind) => {
-								return (
-									<Icon key={ind} label={ite.label} type={ite.type} img={ite.img}/>
-								)
-							})
-			            }
-					</div>
-					<div className="mainArea_inner_barArea">
-						{/* 临时文件存放区域 */}
-						<div className="mainArea_tmpFileArea">
-							<TmpFileBoxBar/>
-						</div>
-					</div>
+            <div className="tmpFileBox_container">
+            	<h3 className="tmpFileBox_container_title">TmpFiles</h3>
+            	<div className="tmpFileBox_inner">
+					<FileBox/>
 				</div>
             </div>
         )
@@ -80,4 +65,4 @@ class MainArea extends Component {
     }
 }
 
-export default MainArea
+export default TmpFileBox

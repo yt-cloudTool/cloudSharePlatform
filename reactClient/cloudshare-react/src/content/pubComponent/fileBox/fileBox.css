@@ -1,0 +1,36 @@
+.fileBox_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 280px;
+    border: 1px solid var(--borderColor);
+    margin: 0px; /*...*/
+}
+.fileBox_fileSelector {
+    
+}
+.fileBox_fileListContainer {
+    height: 200px;
+    overflow: auto;
+}
+.fileBox_fileList {
+    
+}
+.fileBox_fileList_li {
+    
+}
+.fileBox_selectAuthority_area {
+}
+.fileBox_typeSelect {
+    display: inline-block;
+    width: 50% !important;
+}
+.fileBox_controlArea_boxname {
+    display: flex;
+}
+.fileBox_footer {
+    
+}
+.fileBox_footer_saveBtn {
+    border-bottom: 0 !important;
+}

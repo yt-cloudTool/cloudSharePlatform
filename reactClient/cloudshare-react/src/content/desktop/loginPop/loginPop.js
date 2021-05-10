@@ -93,15 +93,15 @@ class LoginPop extends Component {
 					
 					<div className="headerPop_body">
 						<div className="headerPop_usernameInput_container">
-							<input className="headerPop_username_input" name="username" value={this.state.username} onChange={this.handleInputChange} placeholder="Username"/>
+							<input className="headerPop_username_input normalInput" name="username" value={this.state.username} onChange={this.handleInputChange} placeholder="Username"/>
 						</div>
 						<div className="headerPop_passwordInput_container">
-							<input className="headerPop_password_input" name="password" value={this.state.password} onChange={this.handleInputChange} type="password" placeholder="Password"/>
+							<input className="headerPop_password_input normalInput" name="password" value={this.state.password} onChange={this.handleInputChange} type="password" placeholder="Password"/>
 						</div>
 						
 						<div className="headerPop_btnArea">
-							<span className="headerPop_actionBtn" onClick={this.register}>Register</span>
-							<span className="headerPop_actionBtn" onClick={this.login}>Login</span>
+							<span className="normalButton" onClick={this.register}>Register</span>
+							<span className="normalButton" onClick={this.login}>Login</span>
 						</div>
 					</div>
 					

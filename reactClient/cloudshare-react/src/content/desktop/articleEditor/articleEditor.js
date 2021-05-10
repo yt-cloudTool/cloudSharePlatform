@@ -149,23 +149,23 @@ class ArticleEditor extends Component {
 							
 							{/*如果 type != FileBox 则显示此项*/}
 							<li id="articleEditor_fileBoxShow_btn" className="articleEditor_fileBoxShow_btn" style={{display: this.state.form_type !== "filebox" ? "inline-block" : "none"}}>
-								<button className="headerPop_actionBtn" onClick={this.handle_fileBox_show}>UploadFile</button>
+								<button className="normalButton" onClick={this.handle_fileBox_show}>UploadFile</button>
 							</li>
 						</ul>
 						
 					</div>
 					<div className="articleEditor_formArea">
 						<div className="articleEditor_formContainer">
-							<input id="articleEditor_normalTitle_input" name="form_label" onChange={this.handle_form_change} className="articleEditor_form articleEditor_normalTitle_input" placeholder="Label"/>
+							<input id="articleEditor_normalTitle_input" name="form_label" onChange={this.handle_form_change} className="normalInput articleEditor_normalTitle_input" placeholder="Label"/>
 						</div>
 						{/*如果 type == Normal 则显示此项*/}
 						<div id="articleEditor_formArea_article" className="articleEditor_formContainer" style={{display: this.state.form_type === "normal" ? "flex" : "none"}}>
-							<textarea id="articleEditor_normalContent_textarea" name="form_content" onChange={this.handle_form_change} className="articleEditor_form articleEditor_normalContent_textarea" placeholder="Content"></textarea>
+							<textarea id="articleEditor_normalContent_textarea" name="form_content" onChange={this.handle_form_change} className="normalInput articleEditor_normalContent_textarea" placeholder="Content"></textarea>
 						</div>
 						
 						{/*如果 type == Note 则显示此项*/}
 						<div id="articleEditor_formArea_article" className="articleEditor_formContainer" style={{display: this.state.form_type === "note" ? "block" : "none"}}>
-							<textarea id="articleEditor_noteContent_textarea" name="form_content" onChange={this.handle_form_change} className="articleEditor_form articleEditor_noteContent_textarea" placeholder="Content"></textarea>
+							<textarea id="articleEditor_noteContent_textarea" name="form_content" onChange={this.handle_form_change} className="normalInput articleEditor_noteContent_textarea" placeholder="Content"></textarea>
 						</div>
 						
 						{/*如果 type == Article 则显示此项*/}
@@ -185,7 +185,7 @@ class ArticleEditor extends Component {
 						
 						{/*如果 type == FileBox 则显示此项*/}
 						<div id="articleEditor_formArea_article" className="articleEditor_formContainer" style={{display: this.state.form_type === "filebox" ? "block" : "none"}}>
-							<button>New Folder</button> {/*每添加一个folder就添加一个fileBox组件*/}
+							<button className="normalButton">New Folder</button> {/*每添加一个folder就添加一个fileBox组件*/}
 							<ul>
 								{/*fileBox list*/}
 							</ul>
@@ -194,8 +194,8 @@ class ArticleEditor extends Component {
 						
 					</div>
 					<div className="articleEditor_formContainer articleEditor_actionBtnArea">
-						<button className="headerPop_actionBtn" onClick={this.handleCancel}>Cancel</button>
-						<button className="headerPop_actionBtn" onClick={this.handleSubmit}>Submit</button>
+						<button className="normalButton" onClick={this.handleCancel}>Cancel</button>
+						<button className="normalButton" onClick={this.handleSubmit}>Submit</button>
 					</div>
 				</div>
 			</div>

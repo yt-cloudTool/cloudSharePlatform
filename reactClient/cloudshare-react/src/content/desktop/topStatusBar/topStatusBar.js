@@ -52,7 +52,7 @@ class TopStatusBa extends Component {
     
     // 检查登录
     checkLogin () {
-    	window.$axios.get(window.$api.checkLogin).then((res) => {
+    	window.$axios.post(window.$api.checkLogin).then((res) => {
         	if (res.data.status === 1) {
 		        window.$store.dispatch(window.$actions.set_loginStatus("LOGINED"))
 			} else {

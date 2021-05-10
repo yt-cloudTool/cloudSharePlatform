@@ -2,7 +2,65 @@
 	--borderColor: #086d68;
 	--backgroundColor: #b9cccb;
 	--color: #273837;
+    --fontSize: 13px;
 }
 .App {
 	
+}
+
+.flex    { display: flex; }
+.w50     { width: 50%; }
+.w100    { width: 100%; }
+
+/*默认表单样式*/
+/*input*/
+.normalInput {
+    width: 100%;
+    border: none;
+    border-bottom: 1px dotted var(--borderColor);
+    border-radius: 1px;
+    background-color: #fff;
+    font-size: var(--fontSize);
+    padding: 0.3em 0.5em;
+    resize: none;
+/*    outline: none;*/
+}
+.normalInput:focus {
+   	border-bottom: 1px solid var(--borderColor);
+}
+
+/*select*/
+.normalSelect {
+    width: 100%;
+    border: none;
+    border-bottom: 1px dotted var(--borderColor);
+    border-radius: 1px;
+    background-color: #fff;
+    font-size: var(--fontSize);
+    appearance: none;
+    padding: 0.3em 0.5em;
+/*    outline: none;*/
+}
+
+/*button*/
+.normalButton {
+    padding: 0.3em 1em;
+	background-color: var(--backgroundColor);
+	border: 1px solid var(--backgroundColor);
+    font-size: var(--fontSize);
+    border-bottom: 1px solid var(--borderColor);
+/*    outline: none;*/
+}
+.normalButton:hover {
+	border: 1px solid var(--borderColor);
+	cursor: pointer;
+}
+
+/*label*/
+.normalLabel {
+    color: var(--color);
+    font-size: var(--fontSize);
+    border-bottom: 1px solid var(--borderColor);
+    background-color: #eee;
+    padding: 0.3em 1em;
 }

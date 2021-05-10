@@ -7,9 +7,19 @@
 }
 .mainArea_inner {
     display: flex;
+    width: 100%;
+    height: 100%;
+}
+.mainArea_inner_iconArea {
+    display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: flex-start;
-    width: 100%;
-    height: 100%;
+    width: calc(100% - 300px);
+}
+.mainArea_inner_barArea {
+    width: 300px;
+    border-left: 1px solid var(--borderColor);
+    background-color: var(--backgroundColor);
+    overflow-y: auto;
 }

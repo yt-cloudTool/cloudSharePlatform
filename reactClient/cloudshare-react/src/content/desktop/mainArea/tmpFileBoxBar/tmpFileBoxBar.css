@@ -1,0 +1,14 @@
+.tmpFileBox_container {
+    color: var(--color);
+    text-align: left;
+    font-size: 13px;
+    padding: 3px 0;
+/*    padding-left: 11px;*/
+}
+.tmpFileBox_container_title {
+    border-bottom: 1px solid var(--borderColor);
+    padding: 4px;
+}
+.tmpFileBox_inner {
+    padding: 4px;
+}

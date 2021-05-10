@@ -62,16 +62,9 @@
 	
 }
 .headerPop_username_input, .headerPop_password_input {
-	display: inline-flex;
-	width: 100%;
-	outline: none;
-	background-color: #fff;
-	border: 0;
-	border-bottom: 1px dotted var(--borderColor);
-	padding: 8px 0;
+	
 }
 .headerPop_username_input:focus, .headerPop_password_input:focus {
-	border-bottom: 1px solid var(--borderColor);
 }
 .headerPop_username_input {
 }
@@ -85,14 +78,4 @@
 .headerPop_btnArea {
 	position: absolute;
 	bottom: 1em;
-}
-.headerPop_actionBtn {
-	padding: 0.3em 0.5em;
-	background-color: var(--backgroundColor);
-	border: 1px solid var(--backgroundColor);
-	border-radius: 3px;
-}
-.headerPop_actionBtn:hover {
-	border: 1px solid var(--borderColor);
-	cursor: pointer;
 }
