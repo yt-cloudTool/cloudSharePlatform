@@ -160,7 +160,34 @@ func MongoFind(dbName string, collName string, filter interface{}, page int64, s
 
 	var resultData []map[string]interface{}
 	err = result.All(context.TODO(), &resultData)
+	if err != nil {
+		return nil, err
+	}
+	return resultData, nil
+}
 
+// find (dbname collname filter page size) 如果page和size都0则表示不进行分页搜索
+func MongoFindAll(dbName string, collName string, filter interface{}) ([]map[string]interface{}, error) {
+	var mongoCli = MongodbInit()
+
+	collection := mongoCli.Database(dbName).Collection(collName)
+	result, err := collection.Find(context.TODO(), filter)
+	if err != nil {
+		return nil, err
+	}
+	defer func() {
+		if err := mongoCli.Disconnect(context.TODO()); err != nil {
+			log.Fatalln(err)
+		}
+	}()
+
+	fmt.Println("Find document: ", result)
+
+	var resultData []map[string]interface{}
+	err = result.All(context.TODO(), &resultData)
+	if err != nil {
+		return nil, err
+	}
 	return resultData, nil
 }
 

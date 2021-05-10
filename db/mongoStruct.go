@@ -4,6 +4,10 @@ import (
 	primitive "go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+/*
+   无逻辑删除
+*/
+
 // 用户表
 type MongoUser struct {
 	Id_       primitive.ObjectID `bson:"_id"`

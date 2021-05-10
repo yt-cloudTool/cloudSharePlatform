@@ -51,5 +51,6 @@ func main() {
 	routes.FileBoxInsertInto(r)       // 文件添加到文件box
 	routes.FileBoxDelete(r)           // 删除文件box
 	routes.FileBoxDeleteItem(r)       // 删除文件box中文件
+	routes.FileBoxQuery(r)            // 文件box按box_id检索内容
 	r.Run(":8000")
 }

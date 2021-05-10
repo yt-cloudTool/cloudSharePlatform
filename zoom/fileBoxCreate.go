@@ -69,13 +69,15 @@ func FileBoxCreate(c *gin.Context) {
 		return
 	}
 	// 文件id字符串
+	var fileId_array []string // 文件id数组
 	param_files := c.PostForm("files")
 	if param_files == "" {
-		c.JSON(500, gin.H{"status": 0, "message": "params not enough: files", "data": ""})
-		return
+		// c.JSON(500, gin.H{"status": 0, "message": "params not enough: files", "data": ""})
+		// return
+		fileId_array = []string{}
+	} else {
+		fileId_array = strings.Split(param_files, ",")
 	}
-	// 文件id数组
-	fileId_array := strings.Split(param_files, ",")
 
 	// -------------------------------------------------------------------------
 	// 将数据存到filebox表

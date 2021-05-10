@@ -204,9 +204,13 @@ class FileBox extends Component {
 						</ul>
 					</div>
 				</div>
-				<div className="fileBox_footer">
-					<button className="fileBox_footer_saveBtn normalButton w100" onClick={this.handle_save}>Save</button>
-				</div>
+				{
+					(this.state.mode == 'NORMAL' || this.state.mode == 'NOCREATE') ? (
+						<div className="fileBox_footer">
+							<button className="fileBox_footer_saveBtn normalButton w100" onClick={this.handle_save}>Save</button>
+						</div>
+					) : ''
+				}
             </div>
         )
     }

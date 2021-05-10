@@ -37,3 +37,8 @@ func FileBoxInsertInto(r *gin.Engine) {
 func FileBoxDeleteItem(r *gin.Engine) {
 	r.POST("/api/fileboxdeleteitem", middleware.HandleTokenMid, zoom.FileBoxDeleteItem)
 }
+
+// 检索
+func FileBoxQuery(r *gin.Engine) {
+	r.GET("/api/fileboxquery", middleware.HandleTokenMid, zoom.FileBoxQuery)
+}
