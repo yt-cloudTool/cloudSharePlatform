@@ -36,21 +36,7 @@ func main() {
 	})
 	// ==========================================================================
 
-	/*
-		已使用的路由
-	*/
-	routes.UserAuthorityRegister(r)   // 用户注册
-	routes.UserAuthorityLogin(r)      // 用户登录
-	routes.UserAuthorityCheckLogin(r) // 检查登录
-	routes.ServerInfoMemory(r)        // 服务器信息
-	routes.ArticleInsert(r)           // 新增文章
-	routes.ArticleListGet(r)          // 获取文章列表
-	routes.FileUpload(r)              // 文件上传
-	routes.FileDownload(r)            // 文件下载
-	routes.FileBoxCreate(r)           // 文件box生成
-	routes.FileBoxInsertInto(r)       // 文件添加到文件box
-	routes.FileBoxDelete(r)           // 删除文件box
-	routes.FileBoxDeleteItem(r)       // 删除文件box中文件
-	routes.FileBoxQuery(r)            // 文件box按box_id检索内容
+	routes.SetRoutesObj(r)
+
 	r.Run(":8000")
 }

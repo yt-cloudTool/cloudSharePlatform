@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
+import { GetYMDHMS } from "../../../../utils/utils"
 import "./tmpFileBoxBar.css"
-import FileBox from "../../../pubComponent/fileBox/fileBox.js"
 
 class TmpFileBox extends Component {
 	constructor (props) {
@@ -10,17 +10,16 @@ class TmpFileBox extends Component {
             dataList: [],
             page: 1,
             size: 100,
-            mainData_refresh: 0, // 主列表刷新时间戳标识
+            customBoxName: this.createTmpBoxName(), // box名字
         }
 
         window.$store.subscribe(() => {
             const _state_ = window.$store.getState()
-            // 如果判断有更新主列表数据状态
-            if (_state_.mainData_refresh > this.state.mainData_refresh) {
-	            this.setState({ "mainData_refresh": _state_.mainData_refresh })
-				this.getMainDataList() // 更新数据      	
-            }
         })
+    }
+
+    createTmpBoxName () {
+        return GetYMDHMS() + "_BOX"
     }
     
     // 获取主数据
@@ -55,7 +54,9 @@ class TmpFileBox extends Component {
             <div className="tmpFileBox_container">
             	<h3 className="tmpFileBox_container_title">TmpFiles</h3>
             	<div className="tmpFileBox_inner">
-					<FileBox/>
+                    <ul className="tmpFileBox_inner_list">
+
+                    </ul>
 				</div>
             </div>
         )

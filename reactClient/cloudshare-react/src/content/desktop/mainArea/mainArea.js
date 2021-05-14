@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Icon from "./components/mainAreaIcon/mainAreaIcon.js"
 import "./mainArea.css"
-import FileBox from "../../pubComponent/fileBox/fileBox.js"
+// import FileBox from "../../pubComponent/fileBox/fileBox.js"
 import TmpFileBoxBar from "./tmpFileBoxBar/tmpFileBoxBar.js"
 
 class MainArea extends Component {

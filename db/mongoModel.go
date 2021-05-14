@@ -244,7 +244,9 @@ type MongoTransacStruct struct {
 	database   *mongo.Database
 	collection *mongo.Collection
 	session    mongo.Session
-	errSlice   []error
+
+	// 记录错误
+	errSlice []error
 
 	// 记录这次操作的结果(按类型分为五种)
 	InsertOneResult  *mongo.InsertOneResult

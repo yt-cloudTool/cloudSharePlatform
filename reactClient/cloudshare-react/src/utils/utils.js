@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     
     // 返回特定格式时间日期
     GetDate: function (timestamp) {
@@ -26,6 +26,19 @@ export default {
         const minute  = dateObj.getMinutes() >= 10 ? dateObj.getMinutes() : ('0' + dateObj.getMinutes())
         const seconds = dateObj.getSeconds() >= 10 ? dateObj.getSeconds() : ('0' + dateObj.getSeconds())
         const dateTimeStr = `${year}-${month}-${date} ${day} ${hour}:${minute}:${seconds}` 
+        return dateTimeStr
+    },
+
+    // ...
+    GetYMDHMS: function () {
+        const dateObj = new Date()
+        const year    = dateObj.getFullYear()
+        const month   = (dateObj.getMonth() + 1) >= 10 ? (dateObj.getMonth() + 1) : ('0' + (dateObj.getMonth() + 1))
+        const date    = dateObj.getDate() >= 10 ? dateObj.getDate() : ('0' + dateObj.getDate())
+        const hour    = dateObj.getHours()
+        const minute  = dateObj.getMinutes() >= 10 ? dateObj.getMinutes() : ('0' + dateObj.getMinutes())
+        const seconds = dateObj.getSeconds() >= 10 ? dateObj.getSeconds() : ('0' + dateObj.getSeconds())
+        const dateTimeStr = `${year}${month}${date}${hour}${minute}${seconds}` 
         return dateTimeStr
     }
 }
