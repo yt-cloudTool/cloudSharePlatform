@@ -1,7 +1,7 @@
 package zoom
 
 import (
-	db "cloudSharePlatform/db"
+	// db "cloudSharePlatform/db"
 
 	gin "github.com/gin-gonic/gin"
 
@@ -9,6 +9,7 @@ import (
 	primitive "go.mongodb.org/mongo-driver/bson/primitive"
 	// options "go.mongodb.org/mongo-driver/mongo/options"
 	utils "cloudSharePlatform/utils"
+	modules "cloudSharePlatform/zoom/modules"
 )
 
 func UserRegister(c *gin.Context) {
@@ -28,17 +29,13 @@ func UserRegister(c *gin.Context) {
 		return
 	}
 
-	// 设置数据
-	userDbStoreData := db.MongoUser{
-		Id_:       primitive.NewObjectID(),
-		LoginName: loginname,
-		Nickname:  loginname,
-		Password:  generatedPwd,
-		Access:    2, // 默认普通用户权限
-	}
-
 	// 添加用户
-	dbResult, err := db.MongoInsertOne("cloudshareplatform", "user", userDbStoreData)
+	dbResult, err := modules.Mongo_userInsert(
+		primitive.NewObjectID(),
+		loginname,
+		loginname,
+		generatedPwd,
+		2)
 	if err != nil {
 		c.JSON(401, gin.H{"status": -2, "message": "login name err", "data": ""})
 		return

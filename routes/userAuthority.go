@@ -8,11 +8,11 @@ import (
 
 func init_userAuthority() {
 	// 注册
-	r.POST("/api/register", zoom.UserRegister)
+	r.POST("/api/user/register", zoom.UserRegister)
 
 	// 登录
-	r.POST("/api/login", zoom.UserLogin)
+	r.POST("/api/user/login", zoom.UserLogin)
 
 	// 检查登录
-	r.POST("/api/checklogin", middleware.HandleTokenMid, zoom.UserCheckLogin)
+	r.POST("/api/user/checkLogin", middleware.HandleTokenMid, zoom.UserCheckLogin)
 }

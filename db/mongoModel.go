@@ -35,6 +35,35 @@ func MongoCollectionUniqueIndexModel(dbName string, colName string, field string
 }
 
 // =============================================================================
+//    collection方式操作(灵活 非链式调用)
+// =============================================================================
+type MongoLink struct {
+	DbName   string
+	CollName string
+
+	Ctx context.Context // context.TODO()
+
+	mongoCli   *mongo.Client
+	collection *mongo.Collection
+}
+
+// 获取collection
+func (self *MongoLink) GetCollection() *mongo.Collection {
+	self.Ctx = context.TODO()
+	self.mongoCli = MongodbInit()
+	self.collection = self.mongoCli.Database(self.DbName).Collection(self.CollName)
+	return self.collection
+}
+
+// 断开连接
+func (self *MongoLink) Disconnect() error {
+	if err := self.mongoCli.Disconnect(self.Ctx); err != nil {
+		return err
+	}
+	return nil
+}
+
+// =============================================================================
 //    操作方法
 // =============================================================================
 // insertone

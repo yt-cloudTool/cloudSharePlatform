@@ -51,7 +51,6 @@ func FileBoxQuery(c *gin.Context) {
 		return
 	}
 	// -------------------------------------------------------------------------
-	// 将数据添加到filebox表
 	// 成功id数组
 	dbResult, err := db.MongoFindAll("cloudshareplatform", "filebox", bson.M{
 		"$and": []bson.M{
@@ -60,7 +59,7 @@ func FileBoxQuery(c *gin.Context) {
 		},
 	})
 	if err != nil {
-		c.JSON(500, gin.H{"status": 0, "message": "db update to filbox err", "data": err.Error()})
+		c.JSON(500, gin.H{"status": 0, "message": "db find from filbox err", "data": err.Error()})
 		return
 	}
 

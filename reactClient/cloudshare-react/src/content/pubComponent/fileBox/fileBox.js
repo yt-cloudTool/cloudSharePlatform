@@ -234,7 +234,7 @@ class FileBox extends Component {
 }
 
 FileBox.defaultProps = {
-	mode: "READONLY"
+	mode: "NORMAL"
 }
 
 export default FileBox

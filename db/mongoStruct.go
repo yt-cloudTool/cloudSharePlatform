@@ -50,7 +50,7 @@ type MongoArticle struct {
 
 // 文件表
 type MongoFile struct {
-	Id_           primitive.ObjectID `bson:"_id"`
+	Id_           primitive.ObjectID `bson:"_id",unique`
 	User_id       primitive.ObjectID `bson:"user_id"`       // 用户iduser
 	IsTmp         int                `bson:"is_tmp"`        // 是否是临时文件
 	IsPub         int                `bson:"is_pub"`        // 是否是公开文件

@@ -37,6 +37,7 @@ func main() {
 	// ==========================================================================
 
 	routes.SetRoutesObj(r)
+	routes.ExeRoutesObj()
 
 	r.Run(":8000")
 }
